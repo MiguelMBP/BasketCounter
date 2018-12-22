@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">BasketCounter</string>
+
+    <string-array name="navOptions">
+        <item>Contador</item>
+        <item>Equipos</item>
+        <item>Partidos</item>
+        <item>Equipos NBA</item>
+    </string-array>
 </resources>
