@@ -9,48 +9,50 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.basketcounter.R;
-import com.example.android.basketcounter.model.Player;
+import com.example.android.basketcounter.model.Match;
 
 import java.util.List;
 
-public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdapter.ViewHolder> {
-
-    private List<Player> players;
+public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> {
+    private List<Match> matches;
     private int layout;
     private Context context;
 
-    public CounterPlayerAdapter(List<Player> players, int layout, Context context) {
-        this.players = players;
+    public MatchAdapter(List<Match> matches, int layout, Context context) {
+        this.matches = matches;
         this.layout = layout;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public MatchAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(layout, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final Player player = players.get(i);
-        viewHolder.playerNameView.setText(player.getName());
+    public void onBindViewHolder(@NonNull MatchAdapter.ViewHolder viewHolder, int i) {
+        final Match match = matches.get(i);
+
+        viewHolder.teamsView.setText(match.getHomeTeam().getName() + " - " + match.getVisitor().getName());
+        viewHolder.pointsView.setText(match.getPointsHT() + " - " + match.getPointsV());
     }
 
     @Override
     public int getItemCount() {
-        return players.size();
+        return matches.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView playerNameView;
+        TextView teamsView;
+        TextView pointsView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.playerNameView = itemView.findViewById(R.id.textViewPlayerName);
+            teamsView = itemView.findViewById(R.id.textViewTeams);
+            pointsView = itemView.findViewById(R.id.textViewPoints);
         }
     }
 }

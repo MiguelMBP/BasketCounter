@@ -4,11 +4,17 @@
     android:layout_height="match_parent">
 
     <!-- The main content view -->
-    <fragment
+    <!--<fragment
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.android.basketcounter.fragments.CounterFragment" />
+        android:name="com.example.android.basketcounter.fragments.CounterFragment" />-->
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
     <!-- The navigation drawer -->
     <ListView
@@ -19,6 +25,5 @@
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
-        android:background="#111" />
+        android:background="#fff" />
 </android.support.v4.widget.DrawerLayout>
-

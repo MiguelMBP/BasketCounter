@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".fragments.PlayerFragment">
+    tools:context=".fragments.PlayerListFragment">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/counter_recyclerView"
-        tools:listitem="@layout/counter_player_row" />
+        android:id="@+id/player_recyclerView"
+        tools:listitem="@layout/player_row" />
 
 </FrameLayout>

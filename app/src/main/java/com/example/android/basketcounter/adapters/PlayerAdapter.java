@@ -13,13 +13,12 @@ import com.example.android.basketcounter.model.Player;
 
 import java.util.List;
 
-public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdapter.ViewHolder> {
-
+public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder> {
     private List<Player> players;
     private int layout;
     private Context context;
 
-    public CounterPlayerAdapter(List<Player> players, int layout, Context context) {
+    public PlayerAdapter(List<Player> players, int layout, Context context) {
         this.players = players;
         this.layout = layout;
         this.context = context;
@@ -36,7 +35,8 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Player player = players.get(i);
-        viewHolder.playerNameView.setText(player.getName());
+
+        viewHolder.playerView.setText(player.getName());
     }
 
     @Override
@@ -45,12 +45,11 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView playerNameView;
+        TextView playerView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.playerNameView = itemView.findViewById(R.id.textViewPlayerName);
+            this.playerView = itemView.findViewById(R.id.textViewPlayer);
         }
     }
 }

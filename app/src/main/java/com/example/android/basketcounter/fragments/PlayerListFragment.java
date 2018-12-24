@@ -11,38 +11,38 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.basketcounter.R;
-import com.example.android.basketcounter.adapters.CounterPlayerAdapter;
-import com.example.android.basketcounter.model.CounterPlayer;
+import com.example.android.basketcounter.adapters.PlayerAdapter;
+import com.example.android.basketcounter.model.Player;
 import com.example.android.basketcounter.utils.Utils;
 
 import java.util.List;
 
-public class PlayerFragment extends Fragment {
+public class PlayerListFragment extends Fragment {
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    CounterPlayerAdapter adapter;
-    List<CounterPlayer> players;
+    PlayerAdapter adapter;
+    List<Player> players;
 
-
-    public PlayerFragment() {
+    public PlayerListFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_player, container, false);
+        View view = inflater.inflate(R.layout.fragment_player_list, container, false);
 
-        recyclerView = view.findViewById(R.id.counter_recyclerView);
+        recyclerView = view.findViewById(R.id.player_recyclerView);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        players = Utils.getDummyData();
+        players = Utils.getDummyPlayers();
 
-        adapter = new CounterPlayerAdapter(players, R.layout.counter_player_row, getContext());
+        adapter = new PlayerAdapter(players, R.layout.player_row, getContext());
 
         recyclerView.setAdapter(adapter);
+
 
         return view;
     }

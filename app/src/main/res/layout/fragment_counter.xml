@@ -183,12 +183,6 @@
                         android:layout_weight="1" />
                 </LinearLayout>
 
-                <!--<TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:text="Terminar"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"/>-->
 
             </LinearLayout>
 
@@ -205,14 +199,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/fragmentLocal"
-                android:name="com.example.android.basketcounter.fragments.PlayerFragment" />
+                android:name="com.example.android.basketcounter.fragments.CounterPlayerFragment"
+                android:layout_marginRight="2dp" />
 
             <fragment
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/fragmentVisitante"
-                android:name="com.example.android.basketcounter.fragments.PlayerFragment" />
+                android:name="com.example.android.basketcounter.fragments.CounterPlayerFragment"
+                android:layout_marginLeft="2dp" />
 
 
         </LinearLayout>

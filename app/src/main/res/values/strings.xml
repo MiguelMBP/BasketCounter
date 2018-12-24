@@ -7,4 +7,7 @@
         <item>Partidos</item>
         <item>Equipos NBA</item>
     </string-array>
+
+    <string name="drawer_open">Abrir drawer</string>
+    <string name="drawer_close">Cerrar drawer</string>
 </resources>

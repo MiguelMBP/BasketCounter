@@ -9,18 +9,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.basketcounter.R;
-import com.example.android.basketcounter.model.Player;
+import com.example.android.basketcounter.model.Team;
 
 import java.util.List;
 
-public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdapter.ViewHolder> {
-
-    private List<Player> players;
+public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
+    private List<Team> teams;
     private int layout;
     private Context context;
 
-    public CounterPlayerAdapter(List<Player> players, int layout, Context context) {
-        this.players = players;
+    public TeamAdapter(List<Team> teams, int layout, Context context) {
+        this.teams = teams;
         this.layout = layout;
         this.context = context;
     }
@@ -35,22 +34,21 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final Player player = players.get(i);
-        viewHolder.playerNameView.setText(player.getName());
+        final Team team = teams.get(i);
+        viewHolder.teamView.setText(team.getName());
     }
 
     @Override
     public int getItemCount() {
-        return players.size();
+        return teams.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-        TextView playerNameView;
+        TextView teamView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.playerNameView = itemView.findViewById(R.id.textViewPlayerName);
+            this.teamView = itemView.findViewById(R.id.textViewTeam);
         }
     }
 }

@@ -1,15 +1,17 @@
 package com.example.android.basketcounter.model;
 
-public class CounterPlayer {
+public class Player {
 
     private String name;
+    private Team team;
     private int freeThrows;
     private int twoPointers;
     private int triples;
     private int fouls;
 
-    public CounterPlayer(String name) {
+    public Player(String name, Team team) {
         this.name = name;
+        this.team = team;
         this.freeThrows = 0;
         this.twoPointers = 0;
         this.triples = 0;
@@ -18,6 +20,10 @@ public class CounterPlayer {
 
     public String getName() {
         return name;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 
     public int getFreeThrows() {
@@ -34,6 +40,14 @@ public class CounterPlayer {
 
     public int getFouls() {
         return fouls;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public void freeThrow() {
