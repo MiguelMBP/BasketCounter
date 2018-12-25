@@ -17,11 +17,13 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     private List<Player> players;
     private int layout;
     private Context context;
+    private OnItemClickListener listener;
 
-    public PlayerAdapter(List<Player> players, int layout, Context context) {
+    public PlayerAdapter(List<Player> players, int layout, Context context, OnItemClickListener listener) {
         this.players = players;
         this.layout = layout;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -33,10 +35,17 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         final Player player = players.get(i);
 
         viewHolder.playerView.setText(player.getName());
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(player, i);
+            }
+        });
     }
 
     @Override
@@ -51,5 +60,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
             super(itemView);
             this.playerView = itemView.findViewById(R.id.textViewPlayer);
         }
+    }
+
+
+    public interface OnItemClickListener {
+        void onItemClick(Player player, int position);
     }
 }

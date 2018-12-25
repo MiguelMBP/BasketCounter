@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.PlayerListActivity" />
-        <activity android:name=".activities.MatchDetailsActivity"></activity>
+        <activity android:name=".activities.MatchDetailsActivity" />
+        <activity android:name=".activities.PlayerDetailsActivity"></activity>
     </application>
 
 </manifest>

@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:text="Stats Match A-B"
             android:textStyle="bold"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:id="@+id/TextViewMatchName" />
 
         <LinearLayout
             android:layout_width="match_parent"

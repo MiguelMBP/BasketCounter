@@ -6,9 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.fragments.PlayerListFragment;
+import com.example.android.basketcounter.model.Player;
 import com.example.android.basketcounter.model.Team;
 
-public class PlayerListActivity extends AppCompatActivity {
+public class PlayerListActivity extends AppCompatActivity implements PlayerListFragment.OnPlayerSelected {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +23,11 @@ public class PlayerListActivity extends AppCompatActivity {
             PlayerListFragment tlf = (PlayerListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentPlayerList);
 
         }
+    }
+
+    @Override
+    public void onSelection(Player player) {
+        Intent intent = new Intent(PlayerListActivity.this, PlayerDetailsActivity.class);
+        startActivity(intent);
     }
 }

@@ -25,6 +25,8 @@ public class PlayerListFragment extends Fragment {
     PlayerAdapter adapter;
     List<Player> players;
 
+    private OnPlayerSelected callback;
+
     public PlayerListFragment() {
     }
 
@@ -40,7 +42,12 @@ public class PlayerListFragment extends Fragment {
 
         players = Utils.getDummyPlayers();
 
-        adapter = new PlayerAdapter(players, R.layout.player_row, getContext());
+        adapter = new PlayerAdapter(players, R.layout.player_row, getContext(), new PlayerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Player player, int position) {
+                callback.onSelection(player);
+            }
+        });
 
         recyclerView.setAdapter(adapter);
 
@@ -51,5 +58,15 @@ public class PlayerListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        try {
+            //callback recibe una referencia a la actividad que implementa la interfaz
+            callback = (OnPlayerSelected) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnArticleSelectedListener");
+        }
+    }
+
+    public interface OnPlayerSelected {
+        public void onSelection(Player player);
     }
 }
