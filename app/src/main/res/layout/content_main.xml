@@ -4,17 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MatchActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.MainActivity"
+    tools:showIn="@layout/app_bar_main">
 
-    <fragment
-        android:id="@+id/fragmentMatchList"
-        android:name="com.example.android.basketcounter.fragments.MatchListFragment"
+    <FrameLayout android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </fragment>
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".fragments.CounterFragment" />
 
 </android.support.constraint.ConstraintLayout>

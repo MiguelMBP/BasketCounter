@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_counter"
+            android:icon="@drawable/player"
+            android:title="Counter" />
+        <item
+            android:id="@+id/nav_Teams"
+            android:icon="@drawable/balon2"
+            android:title="Teams" />
+        <item
+            android:id="@+id/nav_Matches"
+            android:icon="@drawable/canasta"
+            android:title="Matches" />
+        <item
+            android:id="@+id/nav_NBA"
+            android:icon="@drawable/balon3"
+            android:title="NBA Teams" />
+    </group>
+
+
+</menu>
