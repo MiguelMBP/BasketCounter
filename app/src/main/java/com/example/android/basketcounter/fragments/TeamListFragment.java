@@ -1,5 +1,6 @@
 package com.example.android.basketcounter.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,8 @@ public class TeamListFragment extends Fragment {
     TeamAdapter adapter;
     List<Team> teams;
 
+    onTeamSelected callback;
+
     public TeamListFragment() {
     }
 
@@ -38,10 +41,29 @@ public class TeamListFragment extends Fragment {
 
         teams = Utils.getDummyTeams();
 
-        adapter = new TeamAdapter(teams, R.layout.team_row, getContext());
+        adapter = new TeamAdapter(teams, R.layout.team_row, getContext(), new TeamAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Team team, int position) {
+                callback.onSelection(team);
+            }
+        });
 
         recyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            callback = (onTeamSelected) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnArticleSelectedListener");
+        }
+    }
+
+    public interface onTeamSelected {
+        public void onSelection(Team team);
     }
 }

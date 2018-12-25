@@ -17,11 +17,13 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
     private List<Match> matches;
     private int layout;
     private Context context;
+    private OnItemClickListener listener;
 
-    public MatchAdapter(List<Match> matches, int layout, Context context) {
+    public MatchAdapter(List<Match> matches, int layout, Context context, OnItemClickListener listener) {
         this.matches = matches;
         this.layout = layout;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -33,11 +35,18 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MatchAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull MatchAdapter.ViewHolder viewHolder, final int i) {
         final Match match = matches.get(i);
 
         viewHolder.teamsView.setText(match.getHomeTeam().getName() + " - " + match.getVisitor().getName());
         viewHolder.pointsView.setText(match.getPointsHT() + " - " + match.getPointsV());
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(match, i);
+            }
+        });
     }
 
     @Override
@@ -54,5 +63,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
             teamsView = itemView.findViewById(R.id.textViewTeams);
             pointsView = itemView.findViewById(R.id.textViewPoints);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Match match, int position);
     }
 }

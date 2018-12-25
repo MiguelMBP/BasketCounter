@@ -3,14 +3,16 @@ package com.example.android.basketcounter.model;
 public class Player {
 
     private String name;
+    private int number;
     private Team team;
     private int freeThrows;
     private int twoPointers;
     private int triples;
     private int fouls;
 
-    public Player(String name, Team team) {
+    public Player(int number, String name, Team team) {
         this.name = name;
+        this.number = number;
         this.team = team;
         this.freeThrows = 0;
         this.twoPointers = 0;
@@ -81,4 +83,14 @@ public class Player {
     public void cancelFoul() {
         fouls--;
     }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+
 }

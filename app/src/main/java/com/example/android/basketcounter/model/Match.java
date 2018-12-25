@@ -1,6 +1,9 @@
 package com.example.android.basketcounter.model;
 
-public class Match {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Match implements Parcelable {
 
     private Team homeTeam;
     private Team visitor;
@@ -13,6 +16,25 @@ public class Match {
         this.pointsHT = pointsHT;
         this.pointsV = pointsV;
     }
+
+    protected Match(Parcel in) {
+        homeTeam = in.readParcelable(Team.class.getClassLoader());
+        visitor = in.readParcelable(Team.class.getClassLoader());
+        pointsHT = in.readInt();
+        pointsV = in.readInt();
+    }
+
+    public static final Creator<Match> CREATOR = new Creator<Match>() {
+        @Override
+        public Match createFromParcel(Parcel in) {
+            return new Match(in);
+        }
+
+        @Override
+        public Match[] newArray(int size) {
+            return new Match[size];
+        }
+    };
 
     public Team getHomeTeam() {
         return homeTeam;
@@ -44,5 +66,18 @@ public class Match {
 
     public void setPointsV(int pointsV) {
         this.pointsV = pointsV;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(homeTeam, flags);
+        dest.writeParcelable(visitor, flags);
+        dest.writeInt(pointsHT);
+        dest.writeInt(pointsV);
     }
 }

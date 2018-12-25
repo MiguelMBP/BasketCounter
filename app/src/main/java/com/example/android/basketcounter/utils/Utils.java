@@ -11,12 +11,12 @@ public class Utils {
 
     public static List<Player> getDummyPlayers() {
         return new ArrayList<Player>() {{
-            add(new Player("Jugador 1", new Team("a")));
-            add(new Player("Jugador 2", new Team("b")));
-            add(new Player("Jugador 3", new Team("c")));
-            add(new Player("Jugador 4", new Team("d")));
-            add(new Player("Jugador 5", new Team("e")));
-            add(new Player("Jugador 6", new Team("f")));
+            add(new Player(1, "Jugador 1", new Team("a")));
+            add(new Player(2, "Jugador 2", new Team("b")));
+            add(new Player(3, "Jugador 3", new Team("c")));
+            add(new Player(4, "Jugador 4", new Team("d")));
+            add(new Player(5, "Jugador 5", new Team("e")));
+            add(new Player(6, "Jugador 6", new Team("f")));
         }};
     }
 

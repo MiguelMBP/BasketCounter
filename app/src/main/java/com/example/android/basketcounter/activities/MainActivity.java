@@ -1,5 +1,6 @@
 package com.example.android.basketcounter.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,9 +17,11 @@ import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.fragments.CounterFragment;
 import com.example.android.basketcounter.fragments.MatchListFragment;
 import com.example.android.basketcounter.fragments.TeamListFragment;
+import com.example.android.basketcounter.model.Match;
+import com.example.android.basketcounter.model.Team;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, TeamListFragment.onTeamSelected, MatchListFragment.OnMatchSelected {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,5 +110,20 @@ public class MainActivity extends AppCompatActivity
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    @Override
+    public void onSelection(Team team) {
+        Intent intent = new Intent(MainActivity.this, PlayerListActivity.class);
+        intent.putExtra("team", team);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onSelection(Match match) {
+        Intent intent = new Intent(MainActivity.this, MatchDetailsActivity.class);
+        intent.putExtra("match", match);
+        startActivity(intent);
     }
 }

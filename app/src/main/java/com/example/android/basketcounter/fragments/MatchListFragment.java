@@ -1,5 +1,6 @@
 package com.example.android.basketcounter.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,8 @@ public class MatchListFragment extends Fragment {
     MatchAdapter adapter;
     List<Match> matches;
 
+    OnMatchSelected callback;
+
     public MatchListFragment() {
     }
 
@@ -38,11 +41,31 @@ public class MatchListFragment extends Fragment {
 
         matches = Utils.getDummyMatches();
 
-        adapter = new MatchAdapter(matches, R.layout.match_row, getContext());
+        adapter = new MatchAdapter(matches, R.layout.match_row, getContext(), new MatchAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Match match, int position) {
+                callback.onSelection(match);
+            }
+        });
 
         recyclerView.setAdapter(adapter);
 
         return view;
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            callback = (OnMatchSelected) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnArticleSelectedListener");
+        }
+
+    }
+
+    public interface OnMatchSelected {
+        public void onSelection(Match match);
     }
 }
