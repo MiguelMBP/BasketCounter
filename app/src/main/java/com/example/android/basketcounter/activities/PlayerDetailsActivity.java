@@ -1,9 +1,10 @@
 package com.example.android.basketcounter.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.example.android.basketcounter.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class PlayerDetailsActivity extends AppCompatActivity {
 
