@@ -13,8 +13,8 @@ import java.util.List;
 
 @Dao
 public interface StatsDAO {
-    @Query("SELECT * FROM stats WHERE player = :player")
-    List<Stats> findByPlayer(Player player);
+    @Query("SELECT * FROM stats WHERE playerId = :playerId")
+    List<Stats> findByPlayer(long playerId);
 
     @Insert
     long insertPlayer(Player player);

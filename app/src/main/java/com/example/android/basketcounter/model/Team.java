@@ -61,4 +61,8 @@ public class Team implements Parcelable {
         dest.writeLong(tid);
         dest.writeString(name);
     }
+
+    public void setTid(long tid) {
+        this.tid = tid;
+    }
 }

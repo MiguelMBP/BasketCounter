@@ -1,6 +1,7 @@
 package com.example.android.basketcounter.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -12,27 +13,34 @@ public class Match implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private long id;
     @NonNull
+    private long homeTeamId;
+    @Ignore
     private Team homeTeam;
     @NonNull
+    private long visitorId;
+    @Ignore
     private Team visitor;
     @NonNull
     private int pointsHT;
     @NonNull
     private int pointsV;
 
-    public Match(Team homeTeam, Team visitor, int pointsHT, int pointsV) {
+
+    public Match() {
+    }
+
+    public Match(Team homeTeam, Team visitor, @NonNull int pointsHT, @NonNull int pointsV) {
         this.homeTeam = homeTeam;
         this.visitor = visitor;
         this.pointsHT = pointsHT;
         this.pointsV = pointsV;
     }
 
-    public Match() {
-    }
-
     protected Match(Parcel in) {
         id = in.readLong();
+        homeTeamId = in.readLong();
         homeTeam = in.readParcelable(Team.class.getClassLoader());
+        visitorId = in.readLong();
         visitor = in.readParcelable(Team.class.getClassLoader());
         pointsHT = in.readInt();
         pointsV = in.readInt();
@@ -50,12 +58,38 @@ public class Match implements Parcelable {
         }
     };
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @NonNull
+    public long getHomeTeamId() {
+        return homeTeamId;
+    }
+
+    public void setHomeTeamId(@NonNull long homeTeamId) {
+        this.homeTeamId = homeTeamId;
+    }
+
     public Team getHomeTeam() {
         return homeTeam;
     }
 
     public void setHomeTeam(Team homeTeam) {
         this.homeTeam = homeTeam;
+    }
+
+    @NonNull
+    public long getVisitorId() {
+        return visitorId;
+    }
+
+    public void setVisitorId(@NonNull long visitorId) {
+        this.visitorId = visitorId;
     }
 
     public Team getVisitor() {
@@ -66,19 +100,21 @@ public class Match implements Parcelable {
         this.visitor = visitor;
     }
 
+    @NonNull
     public int getPointsHT() {
         return pointsHT;
     }
 
-    public void setPointsHT(int pointsHT) {
+    public void setPointsHT(@NonNull int pointsHT) {
         this.pointsHT = pointsHT;
     }
 
+    @NonNull
     public int getPointsV() {
         return pointsV;
     }
 
-    public void setPointsV(int pointsV) {
+    public void setPointsV(@NonNull int pointsV) {
         this.pointsV = pointsV;
     }
 
@@ -90,7 +126,9 @@ public class Match implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(id);
+        dest.writeLong(homeTeamId);
         dest.writeParcelable(homeTeam, flags);
+        dest.writeLong(visitorId);
         dest.writeParcelable(visitor, flags);
         dest.writeInt(pointsHT);
         dest.writeInt(pointsV);

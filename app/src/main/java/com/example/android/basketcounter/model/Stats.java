@@ -1,6 +1,7 @@
 package com.example.android.basketcounter.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -12,8 +13,12 @@ public class Stats {
     @PrimaryKey(autoGenerate = true)
     private long id;
     @NonNull
+    private long playerId;
+    @Ignore
     private Player player;
     @NonNull
+    private long matchId;
+    @Ignore
     private Match match;
     private int points;
     private int freeThrows;
@@ -38,12 +43,34 @@ public class Stats {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @NonNull
+    public long getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(@NonNull long playerId) {
+        this.playerId = playerId;
+    }
+
     public Player getPlayer() {
         return player;
     }
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    @NonNull
+    public long getMatchId() {
+        return matchId;
+    }
+
+    public void setMatchId(@NonNull long matchId) {
+        this.matchId = matchId;
     }
 
     public Match getMatch() {
@@ -92,37 +119,5 @@ public class Stats {
 
     public void setFouls(int fouls) {
         this.fouls = fouls;
-    }
-
-    public void freeThrow() {
-        freeThrows++;
-    }
-
-    public void twoPointer() {
-        twoPointers++;
-    }
-
-    public void threePointer() {
-        threePointers++;
-    }
-
-    public void foul() {
-        fouls++;
-    }
-
-    public void cancelFreeThrow() {
-        freeThrows--;
-    }
-
-    public void cancelTwoPointer() {
-        twoPointers--;
-    }
-
-    public void cancelthreePointer() {
-        threePointers--;
-    }
-
-    public void cancelFoul() {
-        fouls--;
     }
 }

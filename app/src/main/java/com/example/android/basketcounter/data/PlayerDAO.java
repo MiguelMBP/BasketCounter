@@ -17,8 +17,8 @@ public interface PlayerDAO {
     @Query("SELECT * FROM players")
     List<Player> getAll();
 
-    @Query("SELECT * FROM players WHERE team = :team")
-    List<Player> findByTeam(Team team);
+    @Query("SELECT * FROM players WHERE teamId = :teamId")
+    List<Player> findByTeam(long teamId);
 
     @Query("SELECT * FROM players WHERE id = :id")
     Player finById(int id);
