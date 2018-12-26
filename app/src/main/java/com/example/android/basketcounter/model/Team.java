@@ -1,19 +1,30 @@
 package com.example.android.basketcounter.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
+@Entity(tableName = "teams")
 public class Team implements Parcelable {
+
+    @PrimaryKey(autoGenerate = true)
+    private long tid;
+    @NonNull
     private String name;
-    private int nPlayers;
+
 
     public Team(String name) {
         this.name = name;
     }
 
+    public Team() {
+    }
+
     protected Team(Parcel in) {
+        tid = in.readLong();
         name = in.readString();
-        nPlayers = in.readInt();
     }
 
     public static final Creator<Team> CREATOR = new Creator<Team>() {
@@ -36,12 +47,8 @@ public class Team implements Parcelable {
         this.name = name;
     }
 
-    public int getnPlayers() {
-        return nPlayers;
-    }
-
-    public void setnPlayers(int nPlayers) {
-        this.nPlayers = nPlayers;
+    public long getTid() {
+        return tid;
     }
 
     @Override
@@ -51,7 +58,7 @@ public class Team implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(tid);
         dest.writeString(name);
-        dest.writeInt(nPlayers);
     }
 }

@@ -1,41 +1,49 @@
 package com.example.android.basketcounter.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity(tableName = "stats")
 public class Stats {
 
     //Estadisticas de un jugador en un partido
 
-    private int playerNumber;
-    private String name;
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+    @NonNull
+    private Player player;
+    @NonNull
     private Match match;
-    private Team team;
     private int points;
+    private int freeThrows;
+    private int twoPointers;
     private int threePointers;
     private int fouls;
 
-    public Stats(int playerNumber, String name, Match match, Team team, int points, int threePointers, int fouls) {
-        this.playerNumber = playerNumber;
-        this.name = name;
+    public Stats(Player player, Match match, int points, int freeThrows, int twoPointers, int threePointers, int fouls) {
+        this.player = player;
         this.match = match;
-        this.team = team;
         this.points = points;
+        this.freeThrows = freeThrows;
+        this.twoPointers = twoPointers;
         this.threePointers = threePointers;
         this.fouls = fouls;
     }
 
-    public int getPlayerNumber() {
-        return playerNumber;
+    public Stats() {
     }
 
-    public void setPlayerNumber(int playerNumber) {
-        this.playerNumber = playerNumber;
+    public long getId() {
+        return id;
     }
 
-    public String getName() {
-        return name;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public Match getMatch() {
@@ -46,20 +54,28 @@ public class Stats {
         this.match = match;
     }
 
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
     public int getPoints() {
         return points;
     }
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public int getFreeThrows() {
+        return freeThrows;
+    }
+
+    public void setFreeThrows(int freeThrows) {
+        this.freeThrows = freeThrows;
+    }
+
+    public int getTwoPointers() {
+        return twoPointers;
+    }
+
+    public void setTwoPointers(int twoPointers) {
+        this.twoPointers = twoPointers;
     }
 
     public int getThreePointers() {
@@ -76,5 +92,37 @@ public class Stats {
 
     public void setFouls(int fouls) {
         this.fouls = fouls;
+    }
+
+    public void freeThrow() {
+        freeThrows++;
+    }
+
+    public void twoPointer() {
+        twoPointers++;
+    }
+
+    public void threePointer() {
+        threePointers++;
+    }
+
+    public void foul() {
+        fouls++;
+    }
+
+    public void cancelFreeThrow() {
+        freeThrows--;
+    }
+
+    public void cancelTwoPointer() {
+        twoPointers--;
+    }
+
+    public void cancelthreePointer() {
+        threePointers--;
+    }
+
+    public void cancelFoul() {
+        fouls--;
     }
 }

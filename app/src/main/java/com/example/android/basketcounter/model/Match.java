@@ -1,13 +1,23 @@
 package com.example.android.basketcounter.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
+@Entity(tableName = "matches")
 public class Match implements Parcelable {
 
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+    @NonNull
     private Team homeTeam;
+    @NonNull
     private Team visitor;
+    @NonNull
     private int pointsHT;
+    @NonNull
     private int pointsV;
 
     public Match(Team homeTeam, Team visitor, int pointsHT, int pointsV) {
@@ -17,7 +27,11 @@ public class Match implements Parcelable {
         this.pointsV = pointsV;
     }
 
+    public Match() {
+    }
+
     protected Match(Parcel in) {
+        id = in.readLong();
         homeTeam = in.readParcelable(Team.class.getClassLoader());
         visitor = in.readParcelable(Team.class.getClassLoader());
         pointsHT = in.readInt();
@@ -75,6 +89,7 @@ public class Match implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
         dest.writeParcelable(homeTeam, flags);
         dest.writeParcelable(visitor, flags);
         dest.writeInt(pointsHT);
