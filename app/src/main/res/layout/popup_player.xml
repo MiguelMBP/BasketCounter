@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Add Team"
+        android:text="Add Player"
         android:id="@+id/popupTitleID"
         android:textSize="20dp"
         android:paddingBottom="20dp"
@@ -21,8 +21,17 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_below="@id/popupTitleID"
-        android:id="@+id/popupTeamName"
-        android:hint="Team Name">
+        android:id="@+id/popupPlayerName"
+        android:hint="Player Name">
+
+    </EditText>
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/popupPlayerName"
+        android:id="@+id/popupPlayerNumber"
+        android:hint="Player Number">
 
     </EditText>
 
@@ -30,8 +39,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/popupTeamName"
-        android:id="@+id/popupSaveTeamButton"
+        android:layout_below="@id/popupPlayerNumber"
+        android:id="@+id/popupSavePlayerButton"
         android:text="Add"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimary"

@@ -21,7 +21,7 @@ public class PlayerListActivity extends AppCompatActivity implements PlayerListF
         if (intent != null) {
             Team team = getIntent().getExtras().getParcelable("team");
             PlayerListFragment tlf = (PlayerListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentPlayerList);
-
+            tlf.setTeam(team);
         }
     }
 

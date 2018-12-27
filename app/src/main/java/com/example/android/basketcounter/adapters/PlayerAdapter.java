@@ -54,6 +54,11 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         return players.size();
     }
 
+    public void addPlayers(List<Player> players) {
+        this.players = players;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView playerView;
 

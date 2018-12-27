@@ -94,15 +94,15 @@ public class TeamListFragment extends Fragment {
     private void createPopUp() {
 
         builder = new AlertDialog.Builder(getActivity());
-        View view= LayoutInflater.from(getActivity()).inflate(R.layout.popup_team, null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.popup_team, null);
 
         builder.setView(view);
 
-        dialog= builder.create();
+        dialog = builder.create();
         dialog.show();
 
-        final EditText teamName= view.findViewById(R.id.popupTeamName);
-        Button saveButton= view.findViewById(R.id.popupSaveProductButton);
+        final EditText teamName = view.findViewById(R.id.popupTeamName);
+        Button saveButton = view.findViewById(R.id.popupSaveTeamButton);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
