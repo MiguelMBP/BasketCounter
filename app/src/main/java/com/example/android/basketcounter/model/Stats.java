@@ -3,10 +3,14 @@ package com.example.android.basketcounter.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "stats")
+@Entity(tableName = "stats", foreignKeys = {
+        @ForeignKey(entity = Player.class, parentColumns = "id", childColumns = "playerId"),
+        @ForeignKey(entity = Match.class, parentColumns = "id", childColumns = "matchId")})
+
 public class Stats {
 
     //Estadisticas de un jugador en un partido

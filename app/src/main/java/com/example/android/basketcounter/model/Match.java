@@ -7,10 +7,15 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "matches")
+@Entity(tableName = "matches", foreignKeys = {
+        @ForeignKey(entity = Team.class, parentColumns = "tid", childColumns = "homeTeamId"),
+        @ForeignKey(entity = Team.class, parentColumns = "tid", childColumns = "visitorId")
+})
+
 public class Match implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)

@@ -20,6 +20,7 @@ import com.example.android.basketcounter.data.DataBaseRoom;
 import com.example.android.basketcounter.model.Team;
 import com.example.android.basketcounter.utils.Utils;
 import com.example.android.basketcounter.viewmodel.TeamViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,18 +48,20 @@ public class TeamListFragment extends Fragment {
     public TeamListFragment() {
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_team_list, container, false);
 
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_teams);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                createPopUp();
+
+            }
+        });
 
         recyclerView = view.findViewById(R.id.team_recyclerView);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -87,23 +90,6 @@ public class TeamListFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.team_list_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_team:
-                createPopUp();
-
-
-                return true;
-        }
-        return false;
-    }
 
     private void createPopUp() {
 

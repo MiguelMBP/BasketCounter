@@ -7,10 +7,13 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "players")
+@Entity(tableName = "players", foreignKeys =
+        @ForeignKey(entity = Team.class, parentColumns = "tid", childColumns = "teamId"))
+
 public class Player implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
