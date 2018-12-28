@@ -9,6 +9,9 @@ import java.util.List;
 
 public class Utils {
 
+    public static long QUARTER_TIME = 600000;
+    public static long POSSESSION_TIME = 24000;
+
     public static List<Player> getDummyPlayers() {
         return new ArrayList<Player>() {{
             add(new Player(1, "Jugador 1", new Team("a")));

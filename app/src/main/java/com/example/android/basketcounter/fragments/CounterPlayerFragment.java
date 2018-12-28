@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.adapters.CounterPlayerAdapter;
+import com.example.android.basketcounter.model.Match;
 import com.example.android.basketcounter.model.Player;
+import com.example.android.basketcounter.model.Stats;
 import com.example.android.basketcounter.model.Team;
 import com.example.android.basketcounter.utils.Utils;
 import com.example.android.basketcounter.viewmodel.PlayerViewModel;
@@ -33,18 +35,24 @@ public class CounterPlayerFragment extends Fragment implements CounterPlayerAdap
     private RecyclerView.LayoutManager layoutManager;
     private CounterPlayerAdapter adapter;
     private List<Player> players = new ArrayList<>();
+    private List<Stats> stats;
 
     private PlayerViewModel Playermodel;
     private Team team;
+    private boolean homeVisit;      //true: home, false: visitor
+    private CounterFragment fragmentParent;
+
 
     public CounterPlayerFragment() {
     }
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_counter_player, container, false);
 
+        fragmentParent = (CounterFragment) getParentFragment();
 
         recyclerView = view.findViewById(R.id.counter_recyclerView);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -64,34 +72,59 @@ public class CounterPlayerFragment extends Fragment implements CounterPlayerAdap
     @Override
     public void onPlayerClick(View view, Player player) {
         if (view.getId() == R.id.plusFreeThrow) {
-            Toast.makeText(getContext(), "+1", Toast.LENGTH_SHORT).show();
+            fragmentParent.addPoints(1, homeVisit);
+            stats.get(getPlayerPosition(player)).freeThrow();
 
         } else if (view.getId() == R.id.plusTwoPointer) {
-            Toast.makeText(getContext(), "+2", Toast.LENGTH_SHORT).show();
+            fragmentParent.addPoints(2, homeVisit);
+            stats.get(getPlayerPosition(player)).twoPointer();
+
 
         } else if (view.getId() == R.id.plusThreePointer) {
-            Toast.makeText(getContext(), "+3", Toast.LENGTH_SHORT).show();
+            fragmentParent.addPoints(3, homeVisit);
+            stats.get(getPlayerPosition(player)).threePointer();
+
 
         } else if (view.getId() == R.id.plusFoul) {
-            Toast.makeText(getContext(), "F", Toast.LENGTH_SHORT).show();
+            fragmentParent.addFoul(homeVisit);
+            stats.get(getPlayerPosition(player)).foul();
+
 
         } else if (view.getId() == R.id.cancelFreeThrow) {
-            Toast.makeText(getContext(), "-1", Toast.LENGTH_SHORT).show();
+            fragmentParent.addPoints(-1, homeVisit);
+            stats.get(getPlayerPosition(player)).cancelFreeThrow();
+
 
         } else if (view.getId() == R.id.cancelTwoPointer) {
-            Toast.makeText(getContext(), "-2", Toast.LENGTH_SHORT).show();
+            fragmentParent.addPoints(-2, homeVisit);
+            stats.get(getPlayerPosition(player)).cancelTwoPointer();
+
 
         } else if (view.getId() == R.id.cancelThreePointer) {
-            Toast.makeText(getContext(), "-3", Toast.LENGTH_SHORT).show();
+            fragmentParent.addPoints(-3, homeVisit);
+            stats.get(getPlayerPosition(player)).cancelThreePointer();
+
 
         } else if (view.getId() == R.id.cancelFoul) {
-            Toast.makeText(getContext(), "CF", Toast.LENGTH_SHORT).show();
+            fragmentParent.cancelFoul(homeVisit);
+            stats.get(getPlayerPosition(player)).cancelFoul();
+
 
         }
     }
 
-    public void setTeam(Team team) {
+    private int getPlayerPosition(Player player) {
+        for (int i = 0; i < stats.size(); i++) {
+            if (stats.get(i).getPlayerId() == player.getId()) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void setTeam(Team team, boolean homeVisit) {
         this.team = team;
+        this.homeVisit = homeVisit;
 
         Playermodel= ViewModelProviders.of(this).get(PlayerViewModel.class);
         Playermodel.getPlayersByTeam(team.getTid()).observe(this, new Observer<List<Player>>() {
@@ -99,7 +132,17 @@ public class CounterPlayerFragment extends Fragment implements CounterPlayerAdap
             public void onChanged(List<Player> players) {
                 adapter.addPlayers(players);
 
+                stats = new ArrayList<>();
+
+                for (int i = 0; i < players.size(); i++) {
+                    stats.add(new Stats(players.get(i)));/**/
+                }
+
             }
         });
+    }
+
+    public List<Stats> getStats() {
+        return stats;
     }
 }

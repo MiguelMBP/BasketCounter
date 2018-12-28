@@ -25,20 +25,27 @@ public class Stats {
     private long matchId;
     @Ignore
     private Match match;
-    private int points;
-    private int freeThrows;
-    private int twoPointers;
-    private int threePointers;
-    private int fouls;
+    private int points = 0;
+    private int freeThrows = 0;
+    private int twoPointers = 0;
+    private int threePointers = 0;
+    private int fouls = 0;
 
     public Stats(Player player, Match match, int points, int freeThrows, int twoPointers, int threePointers, int fouls) {
         this.player = player;
+        this.playerId = player.getId();
         this.match = match;
+        this.matchId = match.getId();
         this.points = points;
         this.freeThrows = freeThrows;
         this.twoPointers = twoPointers;
         this.threePointers = threePointers;
         this.fouls = fouls;
+    }
+
+    public Stats(Player player) {
+        this.player = player;
+        this.playerId = player.getId();
     }
 
     public Stats() {
@@ -67,6 +74,7 @@ public class Stats {
 
     public void setPlayer(Player player) {
         this.player = player;
+        this.playerId = player.getId();
     }
 
     @NonNull
@@ -84,6 +92,7 @@ public class Stats {
 
     public void setMatch(Match match) {
         this.match = match;
+        this.matchId = match.getId();
     }
 
     public int getPoints() {
@@ -124,5 +133,43 @@ public class Stats {
 
     public void setFouls(int fouls) {
         this.fouls = fouls;
+    }
+
+    public void freeThrow() {
+        freeThrows++;
+        points += 1;
+    }
+
+    public void twoPointer() {
+        twoPointers++;
+        points += 2;
+    }
+
+    public void threePointer() {
+        threePointers++;
+        points += 3;
+    }
+
+    public void foul() {
+        fouls++;
+    }
+
+    public void cancelFreeThrow() {
+        freeThrows--;
+        points -= 1;
+    }
+
+    public void cancelTwoPointer() {
+        twoPointers--;
+        points -= 2;
+    }
+
+    public void cancelThreePointer() {
+        threePointers--;
+        points -= 3;
+    }
+
+    public void cancelFoul() {
+        fouls--;
     }
 }
