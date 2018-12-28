@@ -40,6 +40,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         final Player player = players.get(i);
 
         viewHolder.playerView.setText(player.getName());
+        viewHolder.playerNumberView.setText(player.getNumber() + "");
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +62,12 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView playerView;
+        TextView playerNumberView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.playerView = itemView.findViewById(R.id.textViewPlayer);
+            this.playerNumberView = itemView.findViewById(R.id.textViewPlayerNumber);
         }
     }
 

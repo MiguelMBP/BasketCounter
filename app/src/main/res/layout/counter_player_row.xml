@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.2"
             android:src="@drawable/iconon"
-            android:id="@+id/imageViewBackground" />
+            android:id="@+id/imageViewPlayer" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -43,6 +43,7 @@
                 android:paddingLeft="12dp">
 
                 <TextView
+                    android:id="@+id/plusFreeThrow"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -50,6 +51,7 @@
                     android:layout_gravity="center" />
 
                 <TextView
+                    android:id="@+id/plusTwoPointer"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -57,6 +59,7 @@
                     android:layout_gravity="center" />
 
                 <TextView
+                    android:id="@+id/plusThreePointer"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -64,6 +67,7 @@
                     android:layout_gravity="center" />
 
                 <TextView
+                    android:id="@+id/plusFoul"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -79,6 +83,7 @@
                 android:paddingLeft="12dp">
 
                 <TextView
+                    android:id="@+id/cancelFreeThrow"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -86,6 +91,7 @@
                     android:layout_gravity="center" />
 
                 <TextView
+                    android:id="@+id/cancelTwoPointer"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -93,6 +99,7 @@
                     android:layout_gravity="center" />
 
                 <TextView
+                    android:id="@+id/cancelThreePointer"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -100,6 +107,7 @@
                     android:layout_gravity="center" />
 
                 <TextView
+                    android:id="@+id/cancelFoul"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"

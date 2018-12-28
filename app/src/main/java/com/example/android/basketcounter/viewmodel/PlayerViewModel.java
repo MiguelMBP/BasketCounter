@@ -42,6 +42,7 @@ public class PlayerViewModel extends AndroidViewModel {
 
             if (players.length != 0) {
                 player = players[0];
+                
                 id = db.playerDAO().insertPlayer(players[0]);
                 player.setId(id);
             }

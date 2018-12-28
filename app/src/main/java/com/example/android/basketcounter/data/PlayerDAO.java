@@ -19,7 +19,7 @@ public interface PlayerDAO {
     @Query("SELECT * FROM players")
     LiveData<List<Player>> getAll();
 
-    @Query("SELECT * FROM players WHERE teamId = :teamId")
+    @Query("SELECT * FROM players WHERE teamId = :teamId ORDER BY number")
     LiveData<List<Player>> findByTeam(long teamId);
 
     @Query("SELECT * FROM players WHERE id = :id")
