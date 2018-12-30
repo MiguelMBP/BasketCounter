@@ -37,7 +37,7 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Stats stat = stats.get(i);
 
-        //viewHolder.matchNameView.setText("Stats Match " + stat.getMatch().getHomeTeam() + " - " + stat.getMatch().getVisitor());
+        viewHolder.matchNameView.setText("Stats Match " + stat.getMatch().getHomeTeam().getName() + " - " + stat.getMatch().getVisitor().getName());
         viewHolder.pointsView.setText(stat.getPoints() + "");
         viewHolder.tPView.setText(stat.getThreePointers() + "");
         viewHolder.foulsView.setText(stat.getFouls() + "");
