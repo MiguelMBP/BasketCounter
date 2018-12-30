@@ -2,7 +2,6 @@ package com.example.android.basketcounter.viewmodel;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.android.basketcounter.data.DataBaseRoom;
@@ -25,7 +24,7 @@ public class StatsViewModel extends AndroidViewModel {
 
     }
 
-    public LiveData<List<Stats>> getStats(int idPlayer) {
+    public LiveData<List<Stats>> getStats(long idPlayer) {
         statsList = db.statsDAO().findByPlayer(idPlayer);
         return statsList;
     }

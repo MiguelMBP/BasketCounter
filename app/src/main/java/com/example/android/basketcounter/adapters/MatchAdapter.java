@@ -1,7 +1,6 @@
 package com.example.android.basketcounter.adapters;
 
 import android.content.Context;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.model.Match;
+import com.example.android.basketcounter.viewmodel.TeamViewModel;
 
 import java.util.List;
 
@@ -20,12 +20,18 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
     private int layout;
     private Context context;
     private OnItemClickListener listener;
+    private TeamViewModel teamViewModel;
 
     public MatchAdapter(List<Match> matches, int layout, Context context, OnItemClickListener listener) {
         this.matches = matches;
         this.layout = layout;
         this.context = context;
         this.listener = listener;
+    }
+
+    public void addMatches(List<Match> list) {
+        matches = list;
+        notifyDataSetChanged();
     }
 
     @NonNull

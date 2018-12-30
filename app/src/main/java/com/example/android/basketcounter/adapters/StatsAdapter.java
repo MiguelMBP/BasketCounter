@@ -37,16 +37,21 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Stats stat = stats.get(i);
 
-        viewHolder.matchNameView.setText("Stats Match " + stat.getMatch().getHomeTeam() + " - " + stat.getMatch().getVisitor());
-        viewHolder.pointsView.setText(stat.getPoints());
-        viewHolder.tPView.setText(stat.getThreePointers());
-        viewHolder.foulsView.setText(stat.getFouls());
+        //viewHolder.matchNameView.setText("Stats Match " + stat.getMatch().getHomeTeam() + " - " + stat.getMatch().getVisitor());
+        viewHolder.pointsView.setText(stat.getPoints() + "");
+        viewHolder.tPView.setText(stat.getThreePointers() + "");
+        viewHolder.foulsView.setText(stat.getFouls() + "");
 
     }
 
     @Override
     public int getItemCount() {
         return stats.size();
+    }
+
+    public void addStats(List<Stats> stats) {
+        this.stats = stats;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,7 +63,7 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             matchNameView = itemView.findViewById(R.id.TextViewMatchName);
-            pointsView = itemView.findViewById(R.id.textViewPoints);
+            pointsView = itemView.findViewById(R.id.textViewPointsStats);
             tPView = itemView.findViewById(R.id.textViewTP);
             foulsView = itemView.findViewById(R.id.textViewFouls);
         }

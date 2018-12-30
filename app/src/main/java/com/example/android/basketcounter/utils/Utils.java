@@ -2,6 +2,7 @@ package com.example.android.basketcounter.utils;
 
 import com.example.android.basketcounter.model.Match;
 import com.example.android.basketcounter.model.Player;
+import com.example.android.basketcounter.model.Stats;
 import com.example.android.basketcounter.model.Team;
 
 import java.util.ArrayList;
@@ -40,6 +41,12 @@ public class Utils {
             add(new Team("Equipo C"));
             add(new Team("Equipo D"));
 
+        }};
+    }
+
+    public static List<Stats> getDummyStats() {
+        return new ArrayList<Stats>() {{
+           add(new Stats(new Player(), new Match(), 1, 2, 3, 4, 5));
         }};
     }
 

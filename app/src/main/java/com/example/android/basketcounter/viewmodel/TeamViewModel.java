@@ -1,9 +1,7 @@
 package com.example.android.basketcounter.viewmodel;
 
 import android.app.Application;
-
 import android.os.AsyncTask;
-
 import android.widget.Toast;
 
 import com.example.android.basketcounter.data.DataBaseRoom;
@@ -28,6 +26,10 @@ public class TeamViewModel extends AndroidViewModel {
 
     public LiveData<List<Team>> getTeams() {
         return teamsList;
+    }
+
+    public LiveData<Team> getTeamById(long id) {
+        return db.teamDAO().findById(id);
     }
 
     public void addTeam(Team team) {

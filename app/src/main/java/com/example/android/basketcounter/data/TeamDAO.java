@@ -19,7 +19,7 @@ public interface TeamDAO {
     LiveData<List<Team>> getAll();
 
     @Query("SELECT * FROM teams WHERE tid = :teamId")
-    Team findById(int teamId);
+    LiveData<Team> findById(long teamId);
 
     @Insert
     long insertTeam(Team team);
