@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.fragments.CounterFragment;
 import com.example.android.basketcounter.fragments.MatchListFragment;
+import com.example.android.basketcounter.fragments.NBAFragment;
 import com.example.android.basketcounter.fragments.TeamListFragment;
 import com.example.android.basketcounter.model.Match;
 import com.example.android.basketcounter.model.Team;
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
             fragment = new MatchListFragment();
 
         } else if (id == R.id.nav_NBA) {
-            fragment = new MatchListFragment();
+            fragment = new NBAFragment();
 
         }
 
