@@ -4,7 +4,6 @@ package com.example.android.basketcounter.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -91,7 +90,10 @@ public class Match implements Parcelable {
 
     public void setHomeTeam(Team homeTeam) {
         this.homeTeam = homeTeam;
-        this.homeTeamId = homeTeam.getTid();
+        if (homeTeam != null) {
+            this.homeTeamId = homeTeam.getTid();
+        }
+
     }
 
     @NonNull
@@ -109,7 +111,10 @@ public class Match implements Parcelable {
 
     public void setVisitor(Team visitor) {
         this.visitor = visitor;
-        this.visitorId = visitor.getTid();
+        if (visitor != null) {
+            this.visitorId = visitor.getTid();
+        }
+
 
     }
 

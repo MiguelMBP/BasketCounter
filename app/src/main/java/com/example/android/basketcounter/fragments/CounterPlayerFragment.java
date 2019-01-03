@@ -4,18 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.adapters.CounterPlayerAdapter;
-import com.example.android.basketcounter.model.Match;
 import com.example.android.basketcounter.model.Player;
 import com.example.android.basketcounter.model.Stats;
 import com.example.android.basketcounter.model.Team;
-import com.example.android.basketcounter.utils.Utils;
 import com.example.android.basketcounter.viewmodel.PlayerViewModel;
-import com.example.android.basketcounter.viewmodel.TeamViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -91,23 +85,30 @@ public class CounterPlayerFragment extends Fragment implements CounterPlayerAdap
 
 
         } else if (view.getId() == R.id.cancelFreeThrow) {
-            fragmentParent.addPoints(-1, homeVisit);
-            stats.get(getPlayerPosition(player)).cancelFreeThrow();
-
+            if (stats.get(getPlayerPosition(player)).getFreeThrows() > 0) {
+                fragmentParent.addPoints(-1, homeVisit);
+                stats.get(getPlayerPosition(player)).cancelFreeThrow();
+            }
 
         } else if (view.getId() == R.id.cancelTwoPointer) {
-            fragmentParent.addPoints(-2, homeVisit);
-            stats.get(getPlayerPosition(player)).cancelTwoPointer();
+            if (stats.get(getPlayerPosition(player)).getTwoPointers() > 0) {
+                fragmentParent.addPoints(-2, homeVisit);
+                stats.get(getPlayerPosition(player)).cancelTwoPointer();
+            }
 
 
         } else if (view.getId() == R.id.cancelThreePointer) {
-            fragmentParent.addPoints(-3, homeVisit);
-            stats.get(getPlayerPosition(player)).cancelThreePointer();
+            if (stats.get(getPlayerPosition(player)).getThreePointers() > 0) {
+                fragmentParent.addPoints(-3, homeVisit);
+                stats.get(getPlayerPosition(player)).cancelThreePointer();
+            }
 
 
         } else if (view.getId() == R.id.cancelFoul) {
-            fragmentParent.cancelFoul(homeVisit);
-            stats.get(getPlayerPosition(player)).cancelFoul();
+            if (stats.get(getPlayerPosition(player)).getFouls() > 0) {
+                fragmentParent.cancelFoul(homeVisit);
+                stats.get(getPlayerPosition(player)).cancelFoul();
+            }
 
 
         }
@@ -127,19 +128,22 @@ public class CounterPlayerFragment extends Fragment implements CounterPlayerAdap
         this.homeVisit = homeVisit;
 
         Playermodel= ViewModelProviders.of(this).get(PlayerViewModel.class);
-        Playermodel.getPlayersByTeam(team.getTid()).observe(this, new Observer<List<Player>>() {
-            @Override
-            public void onChanged(List<Player> players) {
-                adapter.addPlayers(players);
+        if (team != null) {
+            Playermodel.getPlayersByTeam(team.getTid()).observe(this, new Observer<List<Player>>() {
+                @Override
+                public void onChanged(List<Player> players) {
+                    adapter.addPlayers(players);
 
-                stats = new ArrayList<>();
+                    stats = new ArrayList<>();
 
-                for (int i = 0; i < players.size(); i++) {
-                    stats.add(new Stats(players.get(i)));/**/
+                    for (int i = 0; i < players.size(); i++) {
+                        stats.add(new Stats(players.get(i)));/**/
+                    }
+
                 }
+            });
+        }
 
-            }
-        });
     }
 
     public List<Stats> getStats() {

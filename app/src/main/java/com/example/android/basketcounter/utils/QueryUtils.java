@@ -41,15 +41,19 @@ public class QueryUtils {
 
                 String name = currentTeam.getString("fullName");
 
-                String city = currentTeam.getString("city");
-
                 boolean isNBAFranchise = currentTeam.getBoolean("isNBAFranchise");
 
                 boolean isAllStar = currentTeam.getBoolean("isAllStar");
 
                 long teamId = currentTeam.getLong("teamId");
 
-                NBATeam team = new NBATeam(name, city, isNBAFranchise, isAllStar, teamId);
+                String confName = currentTeam.getString("confName");
+
+                String divName = currentTeam.getString("divName");
+
+                String tricode = currentTeam.getString("tricode");
+
+                NBATeam team = new NBATeam(name, isNBAFranchise, isAllStar, teamId, confName, divName, tricode);
 
                 teams.add(team);
             }

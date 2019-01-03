@@ -32,7 +32,7 @@ public class NBAFragment extends Fragment {
     private List<NBATeam> teams;
     private NBATeamAdapter adapter;
     private TextView emptyview;
-    ProgressBar progressBar;
+    private ProgressBar progressBar;
 
     public NBAFragment() {
     }
@@ -79,7 +79,7 @@ public class NBAFragment extends Fragment {
                     if (teams != null) {
                         adapter.addAll(nbaTeams);
                     } else {
-                        emptyview.setText("No teams Found");
+                        emptyview.setText(R.string.noteamfound);
                     }
 
 
@@ -87,7 +87,7 @@ public class NBAFragment extends Fragment {
             });
         } else {
             progressBar.setVisibility(View.GONE);
-            emptyview.setText("No Internet Connection");
+            emptyview.setText(R.string.nointernet);
         }
 
         return view;

@@ -1,6 +1,5 @@
 package com.example.android.basketcounter.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.model.Match;
@@ -22,7 +20,6 @@ import com.example.android.basketcounter.model.Stats;
 import com.example.android.basketcounter.model.Team;
 import com.example.android.basketcounter.utils.Utils;
 import com.example.android.basketcounter.viewmodel.MatchViewModel;
-import com.example.android.basketcounter.viewmodel.PlayerViewModel;
 import com.example.android.basketcounter.viewmodel.StatsViewModel;
 import com.example.android.basketcounter.viewmodel.TeamViewModel;
 
@@ -123,7 +120,7 @@ public class CounterFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 teamHome = teamList.get(position);
 
-                changeHome();
+                resetCounter();
             }
 
             @Override
@@ -137,7 +134,7 @@ public class CounterFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 teamVisit = teamList.get(position);
 
-                changeVisit();
+                resetCounter();
             }
 
             @Override
@@ -230,14 +227,12 @@ public class CounterFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.start_match:
-                return true;
-
             case R.id.finish_match:
                 finishMatch();
 
                 return true;
             case R.id.reset_match:
+                resetCounter();
                 return true;
 
         }
@@ -353,10 +348,11 @@ public class CounterFragment extends Fragment {
     }
 
     private void nextQuarter() {
-        quarterTemp = Utils.QUARTER_TIME;
-        quarterNumber++;
-        updateCountDownQuarter();
-
+        if (quarterNumber < 5) {
+            quarterTemp = Utils.QUARTER_TIME;
+            quarterNumber++;
+            updateCountDownQuarter();
+        }
     }
 
     private void continueQuarter() {
@@ -383,9 +379,12 @@ public class CounterFragment extends Fragment {
     }
 
     private void previousQuarter() {
-        quarterTemp = Utils.QUARTER_TIME;
-        quarterNumber--;
-        updateCountDownQuarter();
+        if (quarterNumber > 1) {
+            quarterTemp = Utils.QUARTER_TIME;
+            quarterNumber--;
+            updateCountDownQuarter();
+        }
+
 
     }
 
@@ -448,5 +447,16 @@ public class CounterFragment extends Fragment {
         visitPointsView.setText(visitPoints + "");
         homeFoulsView.setText(getResources().getString(R.string.foul, homeFouls));
         visitFoulsView.setText(getResources().getString(R.string.foul, visitFouls));
+    }
+
+    private void resetCounter() {
+        changeHome();
+        changeVisit();
+        homePoints = 0;
+        visitPoints = 0;
+        homeFouls = 0;
+        visitFouls = 0;
+
+        updateCounter();
     }
 }

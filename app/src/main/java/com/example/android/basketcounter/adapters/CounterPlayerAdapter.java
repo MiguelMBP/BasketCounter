@@ -40,7 +40,7 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         final Player player = players.get(i);
-        viewHolder.playerNameView.setText(player.getName());
+        viewHolder.playerNameView.setText(player.getNumber() + " - " + player.getName());
 
 
     }

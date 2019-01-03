@@ -25,6 +25,8 @@ import androidx.fragment.app.FragmentManager;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, TeamListFragment.onTeamSelected, MatchListFragment.OnMatchSelected {
 
+    private int drawerOptionId = R.id.nav_counter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +46,7 @@ public class MainActivity extends AppCompatActivity
         //Counter Fragment selected on startup
         navigationView.getMenu().getItem(0).setChecked(true);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, new CounterFragment())
-                .commit();
+        changeFragment();
     }
 
     @Override
@@ -68,25 +67,30 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        drawerOptionId = item.getItemId();
+
+        changeFragment();
+
+        return true;
+    }
+
+    private void changeFragment() {
         Fragment fragment = null;
 
-        int id = item.getItemId();
-
-        if (id == R.id.nav_counter) {
+        if (drawerOptionId == R.id.nav_counter) {
             fragment = new CounterFragment();
 
-        } else if (id == R.id.nav_Teams) {
+        } else if (drawerOptionId == R.id.nav_Teams) {
             fragment = new TeamListFragment();
 
-        } else if (id == R.id.nav_Matches) {
+        } else if (drawerOptionId == R.id.nav_Matches) {
             fragment = new MatchListFragment();
 
-        } else if (id == R.id.nav_NBA) {
+        } else if (drawerOptionId == R.id.nav_NBA) {
             fragment = new NBAFragment();
 
         }
@@ -98,9 +102,7 @@ public class MainActivity extends AppCompatActivity
                 .commit();
 
         drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
-
 
     @Override
     public void onSelection(Team team) {

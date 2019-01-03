@@ -2,13 +2,9 @@ package com.example.android.basketcounter.fragments;
 
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,15 +12,12 @@ import android.widget.EditText;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.adapters.TeamAdapter;
-import com.example.android.basketcounter.data.DataBaseRoom;
 import com.example.android.basketcounter.model.Team;
-import com.example.android.basketcounter.utils.Utils;
 import com.example.android.basketcounter.viewmodel.TeamViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,7 +36,7 @@ public class TeamListFragment extends Fragment {
     private List<Team> teamList = new ArrayList<>();
     private TeamViewModel model;
 
-    onTeamSelected callback;
+    private onTeamSelected callback;
 
     public TeamListFragment() {
     }

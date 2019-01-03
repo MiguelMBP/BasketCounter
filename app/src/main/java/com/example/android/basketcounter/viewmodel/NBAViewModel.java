@@ -1,9 +1,7 @@
 package com.example.android.basketcounter.viewmodel;
 
 import android.app.Application;
-import android.content.SharedPreferences;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -26,7 +24,7 @@ public class NBAViewModel extends AndroidViewModel {
 
     private static MutableLiveData<List<NBATeam>> teams;
     private Application application;
-    private static final String NBA_REQUEST_URL = "http://data.nba.net/10s/prod/v2/2018/teams.json";
+    private static final String NBA_REQUEST_URL = "http://data.nba.net/10s/prod/v2/2018/teams.json?";
 
     public NBAViewModel(@NonNull Application application) {
         super(application);
@@ -43,12 +41,9 @@ public class NBAViewModel extends AndroidViewModel {
     }
 
     private void loadTeams() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(application);
 
         Uri baseUri = Uri.parse(NBA_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-
-        uriBuilder.appendQueryParameter("limit", "10");
 
         RequestQueue requestQueue = Volley.newRequestQueue(application);
         StringRequest request = new StringRequest(Request.Method.GET, uriBuilder.toString(), new Response.Listener<String>() {

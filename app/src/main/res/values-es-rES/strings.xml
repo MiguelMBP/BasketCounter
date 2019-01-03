@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BasketCounter</string>
+    <string name="navigation_drawer_open">Abrir menú de navegación</string>
+    <string name="navigation_drawer_close">Cerrar menú de navegación</string>
+    <string name="nav_header_desc">Cabecera de naveación</string>
+    <string name="action_settings">Opciones</string>
+    <string name="first_quarter">Primer Cuarto</string>
+    <string name="second_quarter">Segundo Cuarto</string>
+    <string name="third_quarter">Tercer Cuarto</string>
+    <string name="fourth_quarter">Cuarto Cuarto</string>
+    <string name="prorogue">Prorroga</string>
+    <string name="foul">%1$d Faltas</string>
+    <string name="foul0">0 Faltas</string>
+    <string name="start_match">Empezar partido</string>
+    <string name="finish_match">Terminar Partido</string>
+    <string name="reset_match">Reiniciar partido</string>
+    <string name="totalPoints">Puntos Totales:</string>
+    <string name="team">Equipo:</string>
+    <string name="name">Nombre:</string>
+    <string name="globalStats">Estadísticas Globales</string>
+    <string name="totaltp">Triples Totales:</string>
+    <string name="pointsmatch">Puntos/Partido:</string>
+    <string name="tpmatch">Triples/Partido</string>
+    <string name="addPlayer">Añadir Jugador</string>
+    <string name="playername">Nombre del Jugador</string>
+    <string name="playernumber">Número del Jugador</string>
+    <string name="threepointer">Triples:</string>
+    <string name="add">Añadir</string>
+    <string name="fouls">Faltas:</string>
+    <string name="counter">Contador</string>
+    <string name="teams">Equipos</string>
+    <string name="matches">Partidos</string>
+    <string name="nbateams">Equipos NBA</string>
+    <string name="matchname">Estadísticas partido %1$s - %2$s</string>
+    <string name="noteamfound">Ningun equipo encontrado</string>
+    <string name="nointernet">No hay conexión a internet</string>
+    <string name="addteam">Añadir Equipo</string>
+    <string name="teamname">Nombre del Equipo</string>
+</resources>

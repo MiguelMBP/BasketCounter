@@ -22,7 +22,7 @@ public class MatchDetailsFragment extends Fragment {
     private TextView pointsA;
     private TextView pointsB;
 
-    StatsViewModel statsViewModel;
+    private StatsViewModel statsViewModel;
 
 
     @Nullable

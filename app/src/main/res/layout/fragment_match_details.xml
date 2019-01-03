@@ -66,9 +66,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Points: "
+                    android:text="@string/totalPoints"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_marginRight="4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -108,9 +109,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Points: "
+                    android:text="@string/totalPoints"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_marginRight="4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"

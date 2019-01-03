@@ -7,19 +7,19 @@
         <item
             android:id="@+id/nav_counter"
             android:icon="@drawable/player"
-            android:title="Counter" />
+            android:title="@string/counter" />
         <item
             android:id="@+id/nav_Teams"
             android:icon="@drawable/balon2"
-            android:title="Teams" />
+            android:title="@string/teams" />
         <item
             android:id="@+id/nav_Matches"
             android:icon="@drawable/canasta"
-            android:title="Matches" />
+            android:title="@string/matches" />
         <item
             android:id="@+id/nav_NBA"
             android:icon="@drawable/balon3"
-            android:title="NBA Teams" />
+            android:title="@string/nbateams" />
     </group>
 
 

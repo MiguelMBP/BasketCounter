@@ -25,15 +25,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MatchListFragment extends Fragment {
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
-    MatchAdapter adapter;
-    List<Match> matches = new ArrayList<>();
-    MatchViewModel matchViewModel;
-    TeamViewModel teamViewModel;
-    List<Team> teams;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private MatchAdapter adapter;
+    private List<Match> matches = new ArrayList<>();
+    private MatchViewModel matchViewModel;
+    private TeamViewModel teamViewModel;
+    private List<Team> teams;
 
-    OnMatchSelected callback;
+    private OnMatchSelected callback;
+
+    private boolean isMultipanel;
 
     public MatchListFragment() {
     }
@@ -41,6 +43,7 @@ public class MatchListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_match_list, container, false);
 
         recyclerView = view.findViewById(R.id.match_recyclerView);
@@ -105,4 +108,5 @@ public class MatchListFragment extends Fragment {
     public interface OnMatchSelected {
         public void onSelection(Match match);
     }
+
 }

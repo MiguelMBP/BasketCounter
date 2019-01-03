@@ -23,9 +23,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Team: "
+                android:text="@string/team"
                 android:textStyle="bold"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:layout_marginRight="4dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -62,11 +63,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: "
+                android:text="@string/name"
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_marginLeft="16dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:layout_marginRight="4dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -85,7 +87,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Global Stats"
+                android:text="@string/globalStats"
                 android:textStyle="bold"
                 android:textSize="16sp" />
 
@@ -99,15 +101,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Points: "
+                    android:text="@string/totalPoints"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_marginRight="4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewGlobalPoints"
-                    android:text="47"
+                    android:text="0"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -122,15 +125,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Three Pointers: "
+                    android:text="@string/totaltp"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_marginRight="4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewGlobalTP"
-                    android:text="10"
+                    android:text="0"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -145,15 +149,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Points/Match: "
+                    android:text="@string/pointsmatch"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_marginRight="4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewPPM"
-                    android:text="24"
+                    android:text="0"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -168,15 +173,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Three Pointers/Match: "
+                    android:text="@string/tpmatch"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_marginRight="4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textViewGlobalTPPM"
-                    android:text="5"
+                    android:text="0"
                     android:textSize="15sp" />
 
             </LinearLayout>

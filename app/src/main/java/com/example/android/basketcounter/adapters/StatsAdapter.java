@@ -1,6 +1,7 @@
 package com.example.android.basketcounter.adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,8 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Stats stat = stats.get(i);
 
-        viewHolder.matchNameView.setText("Stats Match " + stat.getMatch().getHomeTeam().getName() + " - " + stat.getMatch().getVisitor().getName());
+        Resources res = context.getResources();
+        viewHolder.matchNameView.setText(String.format(res.getString(R.string.matchname), stat.getMatch().getHomeTeam().getName(), stat.getMatch().getVisitor().getName()));
         viewHolder.pointsView.setText(stat.getPoints() + "");
         viewHolder.tPView.setText(stat.getThreePointers() + "");
         viewHolder.foulsView.setText(stat.getFouls() + "");

@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.model.NBATeam;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -17,8 +19,8 @@ import androidx.annotation.Nullable;
 
 public class NBATeamAdapter extends ArrayAdapter<NBATeam> {
 
-    List<NBATeam> teams;
-    Context context;
+    private List<NBATeam> teams;
+    private Context context;
 
     public NBATeamAdapter(@NonNull Context context, List<NBATeam> teams) {
         super(context, 0, teams);
@@ -42,21 +44,25 @@ public class NBATeamAdapter extends ArrayAdapter<NBATeam> {
         TextView city = listItemView.findViewById(R.id.nbateam_city);
         TextView franchise = listItemView.findViewById(R.id.nbateam_franchise);
         TextView allstar = listItemView.findViewById(R.id.nbateam_allstar);
+        ImageView icon = listItemView.findViewById(R.id.nba_icon);
 
         name.setText(team.getName());
-        city.setText(team.getCity());
+        city.setText(team.getConfName() + " - " + team.getDivNAme());
 
         if (team.isAllStar()) {
-            allstar.setText("All Star");
+            allstar.setText(R.string.allstar);
         } else {
-            allstar.setText("Not All Star");
+            allstar.setText(R.string.nallstar);
         }
 
         if (team.isNBAFranchise()) {
-            franchise.setText("NBA Franchise");
+            franchise.setText(R.string.nbafranchise);
         } else {
-            franchise.setText("Not NBA Franchise");
+            franchise.setText(R.string.notnbafranchise);
         }
+
+        String iconUrl = "https://www.nba.com/assets/logos/teams/primary/web/" + team.getTricode() + ".png";
+        Picasso.get().load(iconUrl).error(R.drawable.nba).into(icon);
 
         return listItemView;
     }

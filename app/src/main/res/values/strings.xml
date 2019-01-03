@@ -2,8 +2,8 @@
     <string name="app_name">BasketCounter</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="first_quarter">First Quarter</string>
@@ -12,7 +12,34 @@
     <string name="fourth_quarter">Fourth Quarter</string>
     <string name="prorogue">Prorogue</string>
     <string name="foul">%1$d Fouls</string>
+    <string name="foul0">0 Fouls</string>
     <string name="start_match">Start Match</string>
     <string name="finish_match">Finish Match</string>
     <string name="reset_match">Reset Match</string>
+    <string name="totalPoints">Total Points: </string>
+    <string name="team">Team:</string>
+    <string name="name">Name:</string>
+    <string name="globalStats">Global Stats</string>
+    <string name="totaltp">Total Three Pointers:</string>
+    <string name="pointsmatch">Points/Match:</string>
+    <string name="tpmatch">Three Pointers/Match:</string>
+    <string name="addPlayer">Add Player</string>
+    <string name="playername">Player Name</string>
+    <string name="playernumber">Player Number</string>
+    <string name="threepointer">Three Pointers: </string>
+    <string name="add">Add</string>
+    <string name="fouls">Fouls:</string>
+    <string name="counter">Counter</string>
+    <string name="teams">Teams</string>
+    <string name="matches">Matches</string>
+    <string name="nbateams">NBA Teams</string>
+    <string name="allstar" translatable="false">All Star</string>
+    <string name="nallstar" translatable="false">Not All Star</string>
+    <string name="nbafranchise" translatable="false">NBA Franchise</string>
+    <string name="notnbafranchise" translatable="false">Not NBA Franchise</string>
+    <string name="matchname">Stats Match %1$s - %2$s</string>
+    <string name="noteamfound">No teams Found</string>
+    <string name="nointernet">No Internet Connection</string>
+    <string name="addteam">Add Team</string>
+    <string name="teamname">Team Name</string>
 </resources>
