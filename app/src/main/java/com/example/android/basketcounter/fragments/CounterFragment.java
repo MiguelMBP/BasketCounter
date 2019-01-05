@@ -1,5 +1,8 @@
 package com.example.android.basketcounter.fragments;
 
+import android.content.Context;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -72,6 +75,34 @@ public class CounterFragment extends Fragment {
     private MatchViewModel matchViewModel;
     private StatsViewModel statsViewModel;
 
+    private MediaPlayer mMediaPlayer;
+    private AudioManager mAudioManager;
+
+    private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                    focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+
+                mMediaPlayer.pause();
+                mMediaPlayer.seekTo(0);
+            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+
+                mMediaPlayer.start();
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+
+                releaseMediaPlayer();
+            }
+        }
+    };
+
+    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMediaPlayer();
+        }
+    };
+
     public CounterFragment() {
 
     }
@@ -87,6 +118,8 @@ public class CounterFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_counter, container, false);
+
+        mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
         actualMatch = new Match(teamHome, teamVisit, 0, 0);
 
@@ -336,6 +369,19 @@ public class CounterFragment extends Fragment {
 
             @Override
             public void onFinish() {
+                releaseMediaPlayer();
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+
+                    mMediaPlayer = MediaPlayer.create(getActivity(), R.raw.whistle);
+
+                    mMediaPlayer.start();
+
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
+
                 possessionRunning = false;
             }
 
@@ -383,6 +429,19 @@ public class CounterFragment extends Fragment {
 
             @Override
             public void onFinish() {
+                releaseMediaPlayer();
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+
+                    mMediaPlayer = MediaPlayer.create(getActivity(), R.raw.buzzer);
+
+                    mMediaPlayer.start();
+
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
+
                 quarterRunning = false;
             }
         }.start();
@@ -483,5 +542,23 @@ public class CounterFragment extends Fragment {
         visitFouls = 0;
 
         updateCounter();
+    }
+
+    private void releaseMediaPlayer() {
+        if (mMediaPlayer != null) {
+
+            mMediaPlayer.release();
+
+            mMediaPlayer = null;
+
+            mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        releaseMediaPlayer();
     }
 }
