@@ -123,7 +123,7 @@ public class CounterPlayerFragment extends Fragment implements CounterPlayerAdap
         return -1;
     }
 
-    public void setTeam(Team team, boolean homeVisit) {
+    public void setTeam(final Team team, boolean homeVisit) {
         this.team = team;
         this.homeVisit = homeVisit;
 
@@ -132,7 +132,7 @@ public class CounterPlayerFragment extends Fragment implements CounterPlayerAdap
             Playermodel.getPlayersByTeam(team.getTid()).observe(this, new Observer<List<Player>>() {
                 @Override
                 public void onChanged(List<Player> players) {
-                    adapter.addPlayers(players);
+                    adapter.addPlayers(players, team);
 
                     stats = new ArrayList<>();
 

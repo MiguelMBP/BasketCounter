@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.model.Player;
+import com.example.android.basketcounter.model.Team;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
     private int layout;
     private Context context;
     private OnPlayerClickListener listener;
+
+    private Team team;
 
     public CounterPlayerAdapter(List<Player> players, int layout, Context context, OnPlayerClickListener listener) {
         this.players = players;
@@ -41,6 +45,33 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         final Player player = players.get(i);
         viewHolder.playerNameView.setText(player.getNumber() + " - " + player.getName());
+
+        if (team != null) {
+            switch (team.getColor()) {
+                case "blue":
+                    Picasso.get().load(R.drawable.blue).into(viewHolder.playerIconView);
+                    break;
+
+                case "green":
+                    Picasso.get().load(R.drawable.green).into(viewHolder.playerIconView);
+                    break;
+
+                case "orange":
+                    Picasso.get().load(R.drawable.orange).into(viewHolder.playerIconView);
+                    break;
+
+                case "red":
+                    Picasso.get().load(R.drawable.red).into(viewHolder.playerIconView);
+                    break;
+
+                case "pink":
+                    Picasso.get().load(R.drawable.pink).into(viewHolder.playerIconView);
+                    break;
+
+                case "black": default:
+                    Picasso.get().load(R.drawable.black).into(viewHolder.playerIconView);
+            }
+        }
 
 
     }
@@ -137,8 +168,9 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
         }
     }
 
-    public void addPlayers(List<Player> players) {
+    public void addPlayers(List<Player> players, Team team) {
         this.players = players;
+        this.team = team;
         notifyDataSetChanged();
     }
 

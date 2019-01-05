@@ -49,16 +49,13 @@
             android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:id="@+id/textViewPlayerDetailsIcon"
                 android:layout_gravity="center"
-                android:background="@drawable/iconon"
-                android:gravity="center"
-                android:text="T"
-                android:textAlignment="center"
-                android:textColor="#FFF" />
+                android:src="@drawable/black"
+                android:gravity="center" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -7,8 +7,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.adapters.TeamAdapter;
@@ -38,6 +40,8 @@ public class TeamListFragment extends Fragment {
     private TeamViewModel model;
 
     private onTeamSelected callback;
+
+    private String color;
 
     public TeamListFragment() {
     }
@@ -106,7 +110,22 @@ public class TeamListFragment extends Fragment {
         dialog.show();
 
         final EditText teamName = view.findViewById(R.id.popupTeamName);
+        Spinner colorSpinner = view.findViewById(R.id.colorSpinner);
         Button saveButton = view.findViewById(R.id.popupSaveTeamButton);
+
+
+
+        colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                color = getResources().getStringArray(R.array.colors_value)[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +133,7 @@ public class TeamListFragment extends Fragment {
 
                 if (!TextUtils.isEmpty(teamName.getText())) {
 
-                    addTeam(teamName.getText().toString());
+                    addTeam(teamName.getText().toString(), color);
 
                 }
 
@@ -122,8 +141,8 @@ public class TeamListFragment extends Fragment {
         });
     }
 
-    private void addTeam(String teamName) {
-        Team team = new Team(teamName);
+    private void addTeam(String teamName, String color) {
+        Team team = new Team(teamName, color);
         model.addTeam(team);
 
         dialog.dismiss();
@@ -149,9 +168,22 @@ public class TeamListFragment extends Fragment {
         dialog.show();
 
         final EditText teamName= view.findViewById(R.id.popupTeamName);
+        Spinner colorSpinner = view.findViewById(R.id.colorSpinner);
         Button saveButton= view.findViewById(R.id.popupSaveTeamButton);
 
         teamName.setText(team.getName());
+
+        colorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                color = getResources().getStringArray(R.array.colors_value)[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,6 +191,7 @@ public class TeamListFragment extends Fragment {
                 if (!TextUtils.isEmpty(teamName.getText())){
 
                     team.setName(teamName.getText().toString());
+                    team.setColor(color);
 
                     model.updateTeam(team);
 

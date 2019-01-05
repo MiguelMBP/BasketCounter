@@ -199,7 +199,7 @@ public class PlayerListFragment extends Fragment {
         model.getPlayersByTeam(team.getTid()).observe(this, new Observer<List<Player>>() {
             @Override
             public void onChanged(List<Player> players) {
-                adapter.addPlayers(players);
+                adapter.addPlayers(players, team);
 
             }
         });

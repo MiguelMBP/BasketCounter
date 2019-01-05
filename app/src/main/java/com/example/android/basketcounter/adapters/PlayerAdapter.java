@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.model.Player;
+import com.example.android.basketcounter.model.Team;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -20,6 +22,8 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     private int layout;
     private Context context;
     private OnItemClickListener listener;
+
+    private Team team;
 
     public PlayerAdapter(List<Player> players, int layout, Context context, OnItemClickListener listener) {
         this.players = players;
@@ -43,6 +47,35 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         viewHolder.playerView.setText(player.getName());
         viewHolder.playerNumberView.setText(player.getNumber() + "");
 
+        if (team != null) {
+            switch (team.getColor()) {
+                case "blue":
+                    Picasso.get().load(R.drawable.blue).into(viewHolder.playerIcon);
+                    break;
+
+                case "green":
+                    Picasso.get().load(R.drawable.green).into(viewHolder.playerIcon);
+                    break;
+
+                case "orange":
+                    Picasso.get().load(R.drawable.orange).into(viewHolder.playerIcon);
+                    break;
+
+                case "red":
+                    Picasso.get().load(R.drawable.red).into(viewHolder.playerIcon);
+                    break;
+
+                case "pink":
+                    Picasso.get().load(R.drawable.pink).into(viewHolder.playerIcon);
+                    break;
+
+                case "black": default:
+                    Picasso.get().load(R.drawable.black).into(viewHolder.playerIcon);
+            }
+        }
+
+
+
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,14 +83,21 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
             }
         });
     }
+    /* <item>black</item>
+        <item>blue</item>
+        <item>red</item>
+        <item>green</item>
+        <item>orange</item>
+        <item>pink</item>*/
 
     @Override
     public int getItemCount() {
         return players.size();
     }
 
-    public void addPlayers(List<Player> players) {
+    public void addPlayers(List<Player> players, Team team) {
         this.players = players;
+        this.team = team;
         notifyDataSetChanged();
     }
 
@@ -66,6 +106,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         TextView playerNumberView;
         ImageView editPlayer;
         ImageView deletePlayer;
+        ImageView playerIcon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,6 +114,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
             this.playerNumberView = itemView.findViewById(R.id.textViewPlayerNumber);
             this.editPlayer = itemView.findViewById(R.id.editPlayerIcon);
             this.deletePlayer = itemView.findViewById(R.id.deletePlayerIcon);
+            this.playerIcon = itemView.findViewById(R.id.playerImage);
 
             editPlayer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,7 +131,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
             });
         }
     }
-
 
     public interface OnItemClickListener {
         void onItemClick(Player player, int position);

@@ -40,9 +40,12 @@
     <string name="filterteams">Filtrar Equipos</string>
     <string name="filter">Filtrar</string>
 
-    <string-array name="conferences">
-        <item>Todas las Conferencias</item>
-        <item>East</item>
-        <item>West</item>
+    <string-array name="colors">
+        <item>Negro</item>
+        <item>Azul</item>
+        <item>Rojo</item>
+        <item>Verde</item>
+        <item>Naranja</item>
+        <item>Rosa</item>
     </string-array>
 </resources>

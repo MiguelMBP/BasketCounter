@@ -4,7 +4,6 @@ package com.example.android.basketcounter.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -16,10 +15,12 @@ public class Team implements Parcelable {
     private long tid;
     @NonNull
     private String name;
+    private String color;
 
 
-    public Team(String name) {
+    public Team(@NonNull String name, String color) {
         this.name = name;
+        this.color = color;
     }
 
     public Team() {
@@ -28,6 +29,7 @@ public class Team implements Parcelable {
     protected Team(Parcel in) {
         tid = in.readLong();
         name = in.readString();
+        color = in.readString();
     }
 
     public static final Creator<Team> CREATOR = new Creator<Team>() {
@@ -42,16 +44,29 @@ public class Team implements Parcelable {
         }
     };
 
+    public long getTid() {
+        return tid;
+    }
+
+    public void setTid(long tid) {
+        this.tid = tid;
+    }
+
+    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
-    public long getTid() {
-        return tid;
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     @Override
@@ -63,9 +78,6 @@ public class Team implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(tid);
         dest.writeString(name);
-    }
-
-    public void setTid(long tid) {
-        this.tid = tid;
+        dest.writeString(color);
     }
 }

@@ -16,11 +16,8 @@
             android:layout_height="50dp"
             android:id="@+id/playerImage"
             android:layout_gravity="center"
-            android:src="@drawable/iconon"
-            android:gravity="center"
-            android:text="T"
-            android:textAlignment="center"
-            android:textColor="#FFF" />
+            android:src="@drawable/black"
+            android:gravity="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
