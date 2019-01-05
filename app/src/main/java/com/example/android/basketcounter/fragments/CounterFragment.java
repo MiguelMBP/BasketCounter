@@ -65,12 +65,10 @@ public class CounterFragment extends Fragment {
 
     private int homePoints;
     private int visitPoints;
-    private int homeFouls;
-    private int visitFouls;
+    private int[] homeFouls = new int[5];
+    private int[] visitFouls = new int[5];
 
     private Match actualMatch;
-    private List<Stats> statsHome;
-    private List<Stats> statsVisit;
 
     private MatchViewModel matchViewModel;
     private StatsViewModel statsViewModel;
@@ -292,8 +290,8 @@ public class CounterFragment extends Fragment {
         CounterPlayerFragment cpfHome = (CounterPlayerFragment) getChildFragmentManager().findFragmentById(R.id.fragmentLocal);
         CounterPlayerFragment cpfVisit = (CounterPlayerFragment) getChildFragmentManager().findFragmentById(R.id.fragmentVisitante);
 
-        statsHome = cpfHome.getStats();
-        statsVisit = cpfVisit.getStats();
+        List<Stats> statsHome = cpfHome.getStats();
+        List<Stats> statsVisit = cpfVisit.getStats();
 
         actualMatch.setPointsHT(homePoints);
         actualMatch.setPointsV(visitPoints);
@@ -407,8 +405,6 @@ public class CounterFragment extends Fragment {
             quarterTemp = Utils.QUARTER_TIME;
             quarterNumber++;
             updateCountDownQuarter();
-            homeFouls = 0;
-            visitFouls = 0;
             updateCounter();
 
             if (possessionRunning) {
@@ -459,8 +455,6 @@ public class CounterFragment extends Fragment {
             quarterTemp = Utils.QUARTER_TIME;
             quarterNumber--;
             updateCountDownQuarter();
-            homeFouls = 0;
-            visitFouls = 0;
             updateCounter();
 
             if (possessionRunning) {
@@ -508,9 +502,9 @@ public class CounterFragment extends Fragment {
 
     public void addFoul(boolean homeVisit) {
         if (homeVisit) {
-            homeFouls += 1;
+            homeFouls[quarterNumber-1] += 1;
         } else {
-            visitFouls += 1;
+            visitFouls[quarterNumber-1] += 1;
         }
 
         updateCounter();
@@ -518,9 +512,9 @@ public class CounterFragment extends Fragment {
 
     public void cancelFoul(boolean homeVisit) {
         if (homeVisit) {
-            homeFouls -= 1;
+            homeFouls[quarterNumber-1] -= 1;
         } else {
-            visitFouls -= 1;
+            visitFouls[quarterNumber-1] -= 1;
         }
 
         updateCounter();
@@ -529,8 +523,8 @@ public class CounterFragment extends Fragment {
     private void updateCounter() {
         homePointsView.setText(homePoints + "");
         visitPointsView.setText(visitPoints + "");
-        homeFoulsView.setText(getResources().getString(R.string.foul, homeFouls));
-        visitFoulsView.setText(getResources().getString(R.string.foul, visitFouls));
+        homeFoulsView.setText(getResources().getString(R.string.foul, homeFouls[quarterNumber-1]));
+        visitFoulsView.setText(getResources().getString(R.string.foul, visitFouls[quarterNumber-1]));
     }
 
     private void resetCounter() {
@@ -538,8 +532,8 @@ public class CounterFragment extends Fragment {
         changeVisit();
         homePoints = 0;
         visitPoints = 0;
-        homeFouls = 0;
-        visitFouls = 0;
+        homeFouls = new int[5];
+        visitFouls = new int[5];
 
         updateCounter();
     }

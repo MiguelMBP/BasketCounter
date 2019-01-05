@@ -83,6 +83,10 @@ public class CounterPlayerFragment extends Fragment implements CounterPlayerAdap
             fragmentParent.addFoul(homeVisit);
             stats.get(getPlayerPosition(player)).foul();
 
+            if (stats.get(getPlayerPosition(player)).getFouls() > 4) {
+                adapter.markPlayer(getPlayerPosition(player));
+            }
+
 
         } else if (view.getId() == R.id.cancelFreeThrow) {
             if (stats.get(getPlayerPosition(player)).getFreeThrows() > 0) {
@@ -105,11 +109,14 @@ public class CounterPlayerFragment extends Fragment implements CounterPlayerAdap
 
 
         } else if (view.getId() == R.id.cancelFoul) {
+            if (stats.get(getPlayerPosition(player)).getFouls() > 4) {
+                adapter.unmarkPlayer(getPlayerPosition(player));
+            }
+
             if (stats.get(getPlayerPosition(player)).getFouls() > 0) {
                 fragmentParent.cancelFoul(homeVisit);
                 stats.get(getPlayerPosition(player)).cancelFoul();
             }
-
 
         }
     }

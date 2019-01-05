@@ -1,6 +1,7 @@
 package com.example.android.basketcounter.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +26,11 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
     private OnPlayerClickListener listener;
 
     private Team team;
+    private boolean[] disqualifies;
 
     public CounterPlayerAdapter(List<Player> players, int layout, Context context, OnPlayerClickListener listener) {
         this.players = players;
+        this.disqualifies = new boolean[players.size()];
         this.layout = layout;
         this.context = context;
         this.listener = listener;
@@ -38,6 +41,10 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(layout, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(view);
+
+        for (int j = 0; j < disqualifies.length; j++) {
+            disqualifies[j] = false;
+        }
         return viewHolder;
     }
 
@@ -74,11 +81,30 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
         }
 
 
+        if (disqualifies[i]) {
+            viewHolder.playerNameView.setTextColor(Color.RED);
+        } else {
+            viewHolder.playerNameView.setTextColor(Color.BLACK);
+        }
+
+
+
     }
 
     @Override
     public int getItemCount() {
         return players.size();
+    }
+
+    public void markPlayer(int number) {
+        disqualifies[number] = true;
+        notifyDataSetChanged();
+
+    }
+
+    public void unmarkPlayer(int number) {
+        disqualifies[number] = false;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -171,6 +197,12 @@ public class CounterPlayerAdapter extends RecyclerView.Adapter<CounterPlayerAdap
     public void addPlayers(List<Player> players, Team team) {
         this.players = players;
         this.team = team;
+
+        this.disqualifies = new boolean[players.size() + 1];
+        for (int j = 0; j < disqualifies.length; j++) {
+            disqualifies[j] = false;
+        }
+
         notifyDataSetChanged();
     }
 
