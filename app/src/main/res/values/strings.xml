@@ -42,4 +42,12 @@
     <string name="nointernet">No Internet Connection</string>
     <string name="addteam">Add Team</string>
     <string name="teamname">Team Name</string>
+    <string name="filterteams">Filter Team</string>
+    <string name="filter">Filter</string>
+
+    <string-array name="conferences">
+        <item>All Conferences</item>
+        <item>East</item>
+        <item>West</item>
+    </string-array>
 </resources>

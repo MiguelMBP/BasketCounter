@@ -61,12 +61,6 @@ public class StatsViewModel extends AndroidViewModel {
             if (!intro) {
                 Toast.makeText(getApplication(), "Error adding stats", Toast.LENGTH_SHORT)
                         .show();
-            } else {
-
-                Toast.makeText(getApplication(), "Stats added", Toast.LENGTH_SHORT)
-                        .show();
-                //productList.add(0,product);
-                //adapter.notifyItemInserted(0);
             }
         }
     }

@@ -66,4 +66,5 @@ public class NBATeamAdapter extends ArrayAdapter<NBATeam> {
 
         return listItemView;
     }
+
 }

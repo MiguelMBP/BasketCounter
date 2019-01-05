@@ -4,15 +4,16 @@ package com.example.android.basketcounter.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "players", foreignKeys =
-        @ForeignKey(entity = Team.class, parentColumns = "tid", childColumns = "teamId"))
+        @ForeignKey(entity = Team.class, parentColumns = "tid", childColumns = "teamId", onDelete = CASCADE))
 
 public class Player implements Parcelable {
 

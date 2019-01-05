@@ -26,20 +26,37 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:id="@+id/textViewTeam"
                 android:paddingBottom="3dp"
                 android:text="Equipo"
                 android:textStyle="bold"
                 android:textSize="17sp" />
 
+            <ImageView
+                android:id="@+id/editTeamIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_edit"
+                android:layout_gravity="center_vertical"
+                />
+            <ImageView
+                android:id="@+id/deleteTeamIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_delete"
+                android:layout_gravity="center_vertical"
+                />
+
         </LinearLayout>
+
     </LinearLayout>
 
     <TextView

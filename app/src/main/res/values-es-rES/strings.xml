@@ -37,4 +37,12 @@
     <string name="nointernet">No hay conexión a internet</string>
     <string name="addteam">Añadir Equipo</string>
     <string name="teamname">Nombre del Equipo</string>
+    <string name="filterteams">Filtrar Equipos</string>
+    <string name="filter">Filtrar</string>
+
+    <string-array name="conferences">
+        <item>Todas las Conferencias</item>
+        <item>East</item>
+        <item>West</item>
+    </string-array>
 </resources>

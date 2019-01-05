@@ -40,6 +40,8 @@ public class NBAViewModel extends AndroidViewModel {
         return teams;
     }
 
+
+
     private void loadTeams() {
 
         Uri baseUri = Uri.parse(NBA_REQUEST_URL);

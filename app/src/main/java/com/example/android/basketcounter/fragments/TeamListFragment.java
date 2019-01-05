@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TeamListFragment extends Fragment {
+
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
     private RecyclerView recyclerView;
@@ -67,6 +68,16 @@ public class TeamListFragment extends Fragment {
             @Override
             public void onItemClick(Team team, int position) {
                 callback.onSelection(team);
+            }
+
+            @Override
+            public void onButtonClicked(View v, Team team) {
+                if (v.getId() == R.id.editTeamIcon) {
+                    editTeam(team);
+
+                } else if(v.getId() == R.id.deleteTeamIcon) {
+                    deleteTeam(team);
+                }
             }
         });
 
@@ -126,6 +137,40 @@ public class TeamListFragment extends Fragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement OnArticleSelectedListener");
         }
+    }
+
+    private void editTeam(final Team team) {
+        builder = new AlertDialog.Builder(getActivity());
+        View view= LayoutInflater.from(getActivity()).inflate(R.layout.popup_team, null);
+
+        builder.setView(view);
+
+        dialog= builder.create();
+        dialog.show();
+
+        final EditText teamName= view.findViewById(R.id.popupTeamName);
+        Button saveButton= view.findViewById(R.id.popupSaveTeamButton);
+
+        teamName.setText(team.getName());
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(teamName.getText())){
+
+                    team.setName(teamName.getText().toString());
+
+                    model.updateTeam(team);
+
+                }
+
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void deleteTeam(Team team) {
+        model.deleteTeam(team);
     }
 
     public interface onTeamSelected {

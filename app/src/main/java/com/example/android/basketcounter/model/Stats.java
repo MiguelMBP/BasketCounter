@@ -7,9 +7,11 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "stats", foreignKeys = {
-        @ForeignKey(entity = Player.class, parentColumns = "id", childColumns = "playerId"),
-        @ForeignKey(entity = Match.class, parentColumns = "id", childColumns = "matchId")})
+        @ForeignKey(entity = Player.class, parentColumns = "id", childColumns = "playerId", onDelete = CASCADE),
+        @ForeignKey(entity = Match.class, parentColumns = "id", childColumns = "matchId", onDelete = CASCADE)})
 
 public class Stats {
 

@@ -23,6 +23,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -33,6 +34,11 @@ public class NBAFragment extends Fragment {
     private NBATeamAdapter adapter;
     private TextView emptyview;
     private ProgressBar progressBar;
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
+
+    private String conference;
+    boolean isConnected;
 
     public NBAFragment() {
     }
@@ -64,7 +70,7 @@ public class NBAFragment extends Fragment {
 
         ConnectivityManager connectivityManager= (ConnectivityManager) getActivity().getSystemService(getActivity().CONNECTIVITY_SERVICE);
         NetworkInfo info = connectivityManager.getActiveNetworkInfo();
-        boolean isConnected= info != null && info.isConnected();
+        isConnected= info != null && info.isConnected();
 
         if (isConnected) {
             NBAViewModel model = ViewModelProviders.of(this).get(NBAViewModel.class);
@@ -92,4 +98,6 @@ public class NBAFragment extends Fragment {
 
         return view;
     }
+
+
 }

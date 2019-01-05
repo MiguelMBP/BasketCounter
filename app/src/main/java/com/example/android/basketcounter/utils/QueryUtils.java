@@ -55,7 +55,11 @@ public class QueryUtils {
 
                 NBATeam team = new NBATeam(name, isNBAFranchise, isAllStar, teamId, confName, divName, tricode);
 
-                teams.add(team);
+                if (isNBAFranchise) {
+                    teams.add(team);
+                }
+
+
             }
 
         } catch (JSONException e) {
@@ -64,4 +68,5 @@ public class QueryUtils {
 
         return teams;
     }
+
 }

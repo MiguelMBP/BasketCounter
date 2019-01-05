@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.basketcounter.R;
@@ -63,16 +64,35 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView playerView;
         TextView playerNumberView;
+        ImageView editPlayer;
+        ImageView deletePlayer;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.playerView = itemView.findViewById(R.id.textViewPlayer);
             this.playerNumberView = itemView.findViewById(R.id.textViewPlayerNumber);
+            this.editPlayer = itemView.findViewById(R.id.editPlayerIcon);
+            this.deletePlayer = itemView.findViewById(R.id.deletePlayerIcon);
+
+            editPlayer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onButtonCliked(v, players.get(getAdapterPosition()));
+                }
+            });
+
+            deletePlayer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onButtonCliked(v, players.get(getAdapterPosition()));
+                }
+            });
         }
     }
 
 
     public interface OnItemClickListener {
         void onItemClick(Player player, int position);
+        void onButtonCliked(View v, Player player);
     }
 }

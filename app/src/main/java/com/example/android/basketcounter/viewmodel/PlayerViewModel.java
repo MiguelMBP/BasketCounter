@@ -2,7 +2,6 @@ package com.example.android.basketcounter.viewmodel;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.android.basketcounter.data.DataBaseRoom;
@@ -29,6 +28,14 @@ public class PlayerViewModel extends AndroidViewModel {
 
     public void addPlayer(Player player) {
         new AsyncAddPlayer().execute(player);
+    }
+
+    public void updatePlayer(Player player){
+        new AsyncEditPlayerDB().execute(player);
+    }
+
+    public void deletePlayer(Player player){
+        new AsynDeletePlayerDB().execute(player);
     }
 
     private class AsyncAddPlayer extends AsyncTask<Player, Void, Long> {
@@ -61,5 +68,71 @@ public class PlayerViewModel extends AndroidViewModel {
                         .show();
             }
         }
+    }
+
+    private class AsyncEditPlayerDB extends AsyncTask<Player, Void, Integer> {
+
+
+
+        public AsyncEditPlayerDB() {
+
+        }
+
+        @Override
+        protected Integer doInBackground(Player... players) {
+            int updatedrows = 0;
+            if (players.length != 0) {
+
+                updatedrows = db.playerDAO().updatePlayer(players[0]);
+
+            }
+
+            return updatedrows;
+        }
+
+        @Override
+        protected void onPostExecute(Integer updatedRows) {
+            if (updatedRows == 0) {
+                Toast.makeText(getApplication(), "Error updating player", Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(getApplication(), "Player updated", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
+    }
+
+    private class AsynDeletePlayerDB extends AsyncTask<Player, Void, Integer> {
+
+        public AsynDeletePlayerDB() {
+
+        }
+
+        @Override
+        protected Integer doInBackground(Player... players) {
+
+            int deletedrows = 0;
+
+            if (players.length != 0) {
+
+                deletedrows = db.playerDAO().deletePlayer(players[0]);
+
+            }
+
+            return deletedrows;
+
+        }
+
+        @Override
+        protected void onPostExecute(Integer deletedRows) {
+            if (deletedRows == 0) {
+                Toast.makeText(getApplication(), "Error deleting player", Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(getApplication(), "Player deleted", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
+
     }
 }

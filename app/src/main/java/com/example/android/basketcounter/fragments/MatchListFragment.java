@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MatchListFragment extends Fragment {
+
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private MatchAdapter adapter;
@@ -35,7 +36,6 @@ public class MatchListFragment extends Fragment {
 
     private OnMatchSelected callback;
 
-    private boolean isMultipanel;
 
     public MatchListFragment() {
     }

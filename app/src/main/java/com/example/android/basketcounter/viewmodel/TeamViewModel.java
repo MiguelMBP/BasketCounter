@@ -36,6 +36,14 @@ public class TeamViewModel extends AndroidViewModel {
     new AsyncAddTeamDB().execute(team);
     }
 
+    public void deleteTeam(Team team){
+        new AsynDeleteTeamDB().execute(team);
+    }
+
+    public void updateTeam(Team team){
+        new AsyncEditTeamDB().execute(team);
+    }
+
     private class AsyncAddTeamDB extends AsyncTask<Team, Void, Long> {
 
         Team team;
@@ -62,6 +70,72 @@ public class TeamViewModel extends AndroidViewModel {
                         .show();
             }
 
+        }
+    }
+
+    private class AsynDeleteTeamDB extends AsyncTask<Team, Void, Integer> {
+
+        public AsynDeleteTeamDB() {
+
+        }
+
+        @Override
+        protected Integer doInBackground(Team... teams) {
+
+            int deletedrows = 0;
+
+            if (teams.length != 0) {
+
+                deletedrows = db.teamDAO().deleteTeam(teams[0]);
+
+            }
+
+            return deletedrows;
+
+        }
+
+        @Override
+        protected void onPostExecute(Integer deletedRows) {
+            if (deletedRows == 0) {
+                Toast.makeText(getApplication(), "Error deleting team", Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(getApplication(), "Team deleted", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
+
+    }
+
+    private class AsyncEditTeamDB extends AsyncTask<Team, Void, Integer> {
+
+
+
+        public AsyncEditTeamDB() {
+
+        }
+
+        @Override
+        protected Integer doInBackground(Team... teams) {
+            int updatedrows = 0;
+            if (teams.length != 0) {
+
+                updatedrows = db.teamDAO().updateTeam(teams[0]);
+
+            }
+
+            return updatedrows;
+        }
+
+        @Override
+        protected void onPostExecute(Integer updatedRows) {
+            if (updatedRows == 0) {
+                Toast.makeText(getApplication(), "Error updating team", Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(getApplication(), "Team updated", Toast.LENGTH_SHORT)
+                        .show();
+            }
         }
     }
 }

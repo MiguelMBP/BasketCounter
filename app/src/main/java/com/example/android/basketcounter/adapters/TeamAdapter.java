@@ -1,10 +1,10 @@
 package com.example.android.basketcounter.adapters;
 
 import android.content.Context;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.basketcounter.R;
@@ -62,14 +62,33 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView teamView;
+        ImageView editTeam;
+        ImageView deleteTeam;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.teamView = itemView.findViewById(R.id.textViewTeam);
+            this.editTeam = itemView.findViewById(R.id.editTeamIcon);
+            this.deleteTeam = itemView.findViewById(R.id.deleteTeamIcon);
+
+            editTeam.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onButtonClicked(v, teams.get(getAdapterPosition()));
+                }
+            });
+
+            deleteTeam.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onButtonClicked(v, teams.get(getAdapterPosition()));
+                }
+            });
         }
     }
 
     public interface OnItemClickListener {
         void onItemClick(Team team, int position);
+        void onButtonClicked(View v, Team team);
     }
 }

@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.basketcounter.R;
 import com.example.android.basketcounter.model.Match;
@@ -241,6 +242,12 @@ public class CounterFragment extends Fragment {
 
     private void finishMatch() {
 
+        if (actualMatch.getHomeTeam() == actualMatch.getVisitor()) {
+            Toast.makeText(getContext(), "Teams must be different", Toast.LENGTH_SHORT)
+                    .show();
+            return;
+        }
+
         matchViewModel.getMatchCount().observe(this, new Observer<Long>() {
             @Override
             public void onChanged(Long aLong) {
@@ -272,6 +279,8 @@ public class CounterFragment extends Fragment {
 
         statsViewModel.addStats(statsHome);
         statsViewModel.addStats(statsVisit);
+
+        resetCounter();
 
     }
 
@@ -352,6 +361,14 @@ public class CounterFragment extends Fragment {
             quarterTemp = Utils.QUARTER_TIME;
             quarterNumber++;
             updateCountDownQuarter();
+            homeFouls = 0;
+            visitFouls = 0;
+            updateCounter();
+
+            if (possessionRunning) {
+                pausePossession();
+            }
+            resetPossession();
         }
     }
 
@@ -383,6 +400,14 @@ public class CounterFragment extends Fragment {
             quarterTemp = Utils.QUARTER_TIME;
             quarterNumber--;
             updateCountDownQuarter();
+            homeFouls = 0;
+            visitFouls = 0;
+            updateCounter();
+
+            if (possessionRunning) {
+                pausePossession();
+            }
+            resetPossession();
         }
 
 
