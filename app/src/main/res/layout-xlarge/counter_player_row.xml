@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="170dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="4dp"
+    app:cardCornerRadius="4dp"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="4dp">
+    android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,11 +15,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageViewPlayer"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:src="@drawable/black" />
+            android:src="@drawable/black"
+            android:id="@+id/imageViewPlayer" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -28,12 +28,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewPlayerName"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:id="@+id/textViewPlayerName"
                 android:layout_weight="0.35"
                 android:gravity="center"
-                android:text="Jugador" />
+                android:text="Jugador"
+                android:textSize="36sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,34 +46,38 @@
                 <TextView
                     android:id="@+id/plusFreeThrow"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="+1" />
+                    android:layout_height="wrap_content"
+                    android:text="+1"
+                    android:layout_gravity="center"
+                    android:textSize="36sp"/>
 
                 <TextView
                     android:id="@+id/plusTwoPointer"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="+2" />
+                    android:layout_height="wrap_content"
+                    android:text="+2"
+                    android:layout_gravity="center"
+                    android:textSize="36sp"/>
 
                 <TextView
                     android:id="@+id/plusThreePointer"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="+3" />
+                    android:layout_height="wrap_content"
+                    android:text="+3"
+                    android:layout_gravity="center"
+                    android:textSize="36sp"/>
 
                 <TextView
                     android:id="@+id/plusFoul"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="F" />
+                    android:layout_height="wrap_content"
+                    android:text="F"
+                    android:layout_gravity="center"
+                    android:textSize="36sp"/>
 
             </LinearLayout>
 
@@ -85,34 +90,38 @@
                 <TextView
                     android:id="@+id/cancelFreeThrow"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="-1" />
+                    android:layout_height="wrap_content"
+                    android:text="-1"
+                    android:layout_gravity="center"
+                    android:textSize="36sp"/>
 
                 <TextView
                     android:id="@+id/cancelTwoPointer"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="-2" />
+                    android:layout_height="wrap_content"
+                    android:text="-2"
+                    android:layout_gravity="center"
+                    android:textSize="36sp"/>
 
                 <TextView
                     android:id="@+id/cancelThreePointer"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="-3" />
+                    android:layout_height="wrap_content"
+                    android:text="-3"
+                    android:layout_gravity="center"
+                    android:textSize="36sp"/>
 
                 <TextView
                     android:id="@+id/cancelFoul"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="CF" />
+                    android:layout_height="wrap_content"
+                    android:text="CF"
+                    android:layout_gravity="center"
+                    android:textSize="36sp"/>
 
             </LinearLayout>
 
